@@ -1,0 +1,38 @@
+.Nav-Li {
+    display: inline;
+}
+
+.Nav-Ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.Nav {
+    display: flex;
+    color: #DF91F1;
+    background-color: #06001E;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    padding: 0 20px;
+    top: 0;
+    left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #DF91F1;
+}
+
+a:active,
+a:hover {
+    text-decoration: none;
+    color: #FF99FF;
+}
+
+.separator {
+    margin: 0 10px;
+    ;
+}
