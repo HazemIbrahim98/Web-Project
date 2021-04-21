@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Networks For Dummies</title>
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Styles/nav.css">
+    <link rel="stylesheet" href="../Styles/LoginRegister.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="Index.html">
+            <img src="../Assets/Logo.png" alt="Logo Image">
+        </a>
+        <ul>
+            <li class="nav-Li"><a href="Login.html">Login</a></li>
+            <span class="separator">|</span>
+            <li class="nav-Li"><a href="Register.html">Register</a></li>
+            <span class="separator">|</span>
+            <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container text-center border">
+        <div class="jumbotron text-center">
+            <h1>Register and give us your DATA</h1>
+            <p>We promise that we <span style="color: red;">WILL</span> sell your data!</p>
+        </div>
+        <form>
+            <div class="input-container">
+                <i class="fa fa-user icon"> 
+                    <span class="material-icons">person</span>
+                </i>
+                <input class="input-field" type="text" placeholder="Username" name="usrnm">
+            </div>
+            <div class="input-container">
+                <i class="fa fa-key icon">
+                    <span class="material-icons">lock</span>
+                </i>
+                <input class="input-field" type="password" placeholder="Password" id="pw1" name="psw">
+            </div>
+            <div class="input-container">
+                <i class="fa fa-key icon">
+                    <span class="material-icons">lock</span>
+                </i>
+                <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="psw2" oninput="checkPassword()">
+                <span id="output" style="color: red;"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+    <script>
+        function checkPassword() {
+            var pw1 = document.getElementById("pw1").value;
+            var pw2 = document.getElementById("pw2").value;
+            if (pw1 != pw2) {
+                console.log('DONT MATCH')
+                document.getElementById("output").innerHTML = "Passwords don't match"
+            } else
+                document.getElementById("output").innerHTML = ""
+        }
+    </script>
+</body>
+
+</html>

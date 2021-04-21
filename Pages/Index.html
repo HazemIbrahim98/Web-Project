@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neural Networks For Dummies</title>
-    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Styles/Index.css">
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Styles/nav.css">
+    <link rel="stylesheet" href="../Styles/Index.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -14,23 +15,19 @@
 
 <body>
     <nav class="nav">
-        <div>
-            <a href="Index.html">
-                <img src="Assets/Logo.png" alt="Logo Image">
-            </a>
-        </div>
+        <a href="Index.html">
+            <img src="../Assets/Logo.png" alt="Logo Image">
+        </a>
         <ul>
-            <li class="nav-Li"><a href="">Login</a></li>
+            <li class="nav-Li"><a href="Login.html">Login</a></li>
             <span class="separator">|</span>
-            <li class="nav-Li"><a href="">Register</a></li>
+            <li class="nav-Li"><a href="Register.html">Register</a></li>
             <span class="separator">|</span>
-            <li class="nav-Li"><a href="">About Us</a></li>
-            <span class="separator">|</span>
-            <li class="nav-Li"><a href="">Contact Us</a></li>
+            <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
     <div>
-        <div class="csv overlap" id="hideMe">
+        <div class="csv overlap text-center" id="hideMe">
             Upload a .csv Dataset to begin! <br><br>
             <input type="file" class="form" accept=".csv" id="myFile">
             <p id="demo"></p>

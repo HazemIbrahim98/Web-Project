@@ -1,0 +1,35 @@
+.nav {
+    color: #DF91F1;
+    background-color: #06001E;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 2%;
+}
+
+.nav-Ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-Li {
+    display: inline;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #DF91F1;
+}
+
+a:active,
+a:hover {
+    text-decoration: none;
+    color: #FF99FF;
+}
+
+.separator {
+    margin: 0 10px;
+    ;
+}
