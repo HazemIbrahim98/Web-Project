@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,7 +39,20 @@
             <div id="csvDiv">
                 <span id="output"></span>
             </div>
+            <div class="row margin">
+                <div class="col-6 center">
+                    <button class="btn btn-primary" onclick="snackbar()">Clean Dataset</button>
+                </div>
+                <div class="col-6 center">
+                    <form action="model.html">
+                        <button class="btn btn-primary" onclick="AboutUs.html">Submit Dataset to models</button>
+                    </form>
+                </div>
+            </div>
         </div>
+
+        <div id="snackbar">Data Cleaned!</div>
+
     </div>
 
     <script>
@@ -51,11 +65,19 @@
                     .style.visibility = 'hidden';
                 document.getElementById('showMe')
                     .style.visibility = 'visible';
-                successFunction(fr.result);
+                generateTable(fr.result);
             }
         }
 
-        function successFunction(data) {
+        function snackbar() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
+
+        function generateTable(data) {
             var allRows = data.split(/\r?\n|\r/);
             var table = '<table id="table_id" class="display">';
             for (var singleRow = 0; singleRow < allRows.length; singleRow++) {

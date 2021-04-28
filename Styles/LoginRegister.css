@@ -35,14 +35,17 @@
     background-color: #DF91F1;
     color: white;
     padding: 15px 20px;
-    border: none;
     cursor: pointer;
     width: 100%;
+    transition-duration: 0.4s;
     opacity: 0.9;
+    border-color: black;
 }
 
 .btn:hover {
-    opacity: 1;
+    background-color: white;
+    color: black;
+    border-color: black;
 }
 
 .border {

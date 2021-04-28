@@ -19,6 +19,7 @@
 
 a,
 a:visited {
+    transition-duration: 0.4s;
     text-decoration: none;
     color: #DF91F1;
 }
