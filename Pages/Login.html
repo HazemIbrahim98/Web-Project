@@ -25,24 +25,23 @@
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
-
     <div class="container text-center border">
         <div class="jumbotron text-center">
             <h1>Login for no reason whatsoever</h1>
             <p>We promise that we <span style="color: red;">WILL</span> track you on our website and sell your data!</p>
         </div>
-        <form>
+        <form action="../Php/login.php" method="POST">
             <div class="input-container">
                 <i class="fa fa-user icon"> 
                     <span class="material-icons">person</span>
                 </i>
-                <input class="input-field" type="text" placeholder="Username" name="usrnm">
+                <input class="input-field" type="text" placeholder="Email" name="email">
             </div>
             <div class="input-container">
                 <i class="fa fa-key icon">
                     <span class="material-icons">lock</span>
                 </i>
-                <input class="input-field" type="password" placeholder="Password" name="psw">
+                <input class="input-field" type="password" placeholder="Password" name="password">
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>

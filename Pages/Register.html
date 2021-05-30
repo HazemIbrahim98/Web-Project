@@ -31,24 +31,24 @@
             <h1>Register and give us your DATA</h1>
             <p>We promise that we <span style="color: red;">WILL</span> sell your data!</p>
         </div>
-        <form>
+        <form action="../Php/register.php" method="POST">
             <div class="input-container">
                 <i class="fa fa-user icon"> 
                     <span class="material-icons">person</span>
                 </i>
-                <input class="input-field" type="text" placeholder="Username" name="usrnm">
+                <input class="input-field" type="text" placeholder="Email" name="email">
             </div>
             <div class="input-container">
                 <i class="fa fa-key icon">
                     <span class="material-icons">lock</span>
                 </i>
-                <input class="input-field" type="password" placeholder="Password" id="pw1" name="psw" oninput="checkPassword()">
+                <input class="input-field" type="password" placeholder="Password" id="pw1" name="password" oninput="checkPassword()">
             </div>
             <div class="input-container">
                 <i class="fa fa-key icon">
                     <span class="material-icons">lock</span>
                 </i>
-                <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="psw2" oninput="checkPassword()">
+                <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkPassword()">
                 <span id="output" style="color: red;"></span>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
