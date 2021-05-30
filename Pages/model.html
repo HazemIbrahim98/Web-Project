@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Networks For Dummies - Make Your Model</title>
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Styles/nav.css">
+    <link rel="stylesheet" href="../Styles/Index.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="Index.html">
+            <img src="../Assets/Logo.png" alt="Logo Image">
+        </a>
+        <ul>
+            <li class="nav-Li"><a href="Login.html">Login</a></li>
+            <span class="separator">|</span>
+            <li class="nav-Li"><a href="Register.html">Register</a></li>
+            <span class="separator">|</span>
+            <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
+        </ul>
+    </nav>
+
+        <div id="showMe">
+            <div id="csvDiv">
+                <span id="output"></span>
+            </div>
+            <div class="row margin">
+                <div class="col-6 center">
+                    <button class="btn btn-primary" onclick="snackbar()">Clean Dataset</button>
+                </div>
+                <div class="col-6 center">
+                    <form action="model.html">
+                        <button class="btn btn-primary" onclick="AboutUs.html">Submit Dataset to models</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="snackbar">Data Cleaned!</div>
+
+    </div>
+
+    <script>
+
+        function snackbar() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
+
+    </script>
+</body>
+
+</html>
