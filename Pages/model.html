@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
     <link rel="stylesheet" href="../Styles/Index.css">
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="../Styles/LoginRegister.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
@@ -27,52 +27,87 @@
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
-
-    <div id="showMe">
-        <div id="csvDiv">
-            <span id="output"></span>
+    <div class="container text-center border">
+        <div class="jumbotron text-center">
+            <h1>Choose your model <span style="color: #DF91F1;">Here</span></h1>
         </div>
-        <div class="row margin">
-            <div class="col-6 center">
-                <button class="btn btn-primary" onclick="snackbar()">Clean Dataset</button>
+        <div id="main">
+            <div id="contentDiv">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Choose Machine Learning Model</option>
+                    <option value="0">Multilayer Perceptron</option>
+                    <option value="1">Decision Tree</option>
+                </select>
+                <div class="input-container">
+                    <i class="fa fa-user icon">
+                        <span class="material-icons">create</span>
+                    </i>
+                    <input class="input-field" type="text" placeholder="Input Dimensions" name="input_dim" id="input_dim" oninput="checkAll()">
+                </div>
+                <div class="input-container">
+                    <i class="fa fa-user icon">
+                        <span class="material-icons">tag</span>
+                    </i>
+                    <input class="input-field" type="text" placeholder="Number of layers" name="layers" id="layers" onchange="addFields()">
+                </div>
+                <div id="container"></div>
+                <div class="input-container">
+                    <i class="fa fa-user icon">
+                        <span class="material-icons">timer</span>
+                    </i>
+                    <input class="input-field" type="text" placeholder="Number of epochs" name="epochs" id="epochs">
+                </div>
             </div>
-            <div class="col-6 center">
-                <form action="model.html">
-                    <button class="btn btn-primary" onclick="AboutUs.html">Submit Dataset to models</button>
-                </form>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary" onclick="snackbar()">Train Model</button>
             </div>
         </div>
     </div>
 
     <div id="snackbar">Data Cleaned!</div>
 
-
-    <a href="../Php/model.php">CLICK ME!</a>
-
     </div>
 
     <script>
-        function model() {
-            $.ajax({
-                type: "POST",
-                url: "../PythonBackend/runner_script.py",
-                data: {
-                    param: "0 3 [[12,4,relu],[8,4,relu],[4,2,sigmoid]] 1",
-                    success: callbackFunc
-                }
-            }).done(function(o) {
-                console.log("DONEEE!")
-            });
-        }
-
-        function callbackFunc(response) {
-            console.log("IT WORKED!")
-            console.log(response);
+        function addFields() {
+            // Number of inputs to create
+            var number = document.getElementById("layers").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("container");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i = 0; i < number; i++) {
+                // Append a node with a random text
+                //container.appendChild(document.createTextNode("Member " + (i+1)));
+                // Create an <input> element, set its type and name attributes
+                var div = document.createElement("div");
+                div.className = "input-container";
+                var icon = document.createElement("i");
+                icon.className = "fa fa-user icon";
+                var span = document.createElement("span");
+                span.className = "material-icons";
+                span.textContent = "layers";
+                var input = document.createElement("input");
+                input.className = "input-field"
+                input.type = "text";
+                input.placeholder = "Number of Neurons for Layer " + i;
+                input.name = "neuron" + i;
+                input.id = "neuron" + i;
+                icon.appendChild(span)
+                div.appendChild(icon)
+                div.appendChild(input)
+                container.appendChild(div);
+                // Append a line break 
+                //container.appendChild(document.createElement("br"));
+            }
         }
 
         function snackbar() {
             var x = document.getElementById("snackbar");
             x.className = "show";
+            document.getElementById('snackbar').innerHTML = 'Model is Running'
             setTimeout(function() {
                 x.className = x.className.replace("show", "");
             }, 3000);
