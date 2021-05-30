@@ -48,6 +48,10 @@
     border-color: black;
 }
 
+.btn:disabled {
+    background-color: red !important;
+}
+
 .border {
     padding: 5%;
     border-radius: 25px;

@@ -25,6 +25,7 @@
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
+    <h1>FUUUUUUUUCK YOUUUUUUUUUU</h1>
     <div class="container text-center border">
         <div class="jumbotron text-center">
             <h1>Login for no reason whatsoever</h1>
@@ -35,17 +36,49 @@
                 <i class="fa fa-user icon"> 
                     <span class="material-icons">person</span>
                 </i>
-                <input class="input-field" type="text" placeholder="Email" name="email">
+                <input class="input-field" type="text" placeholder="Email" name="email" id="email" oninput="checkAll()">
+                <span id="emailoutput" style="color: red;"></span>
             </div>
             <div class="input-container">
                 <i class="fa fa-key icon">
                     <span class="material-icons">lock</span>
                 </i>
-                <input class="input-field" type="password" placeholder="Password" name="password">
+                <input class="input-field" type="password" placeholder="Password" name="password" id="pw" oninput="checkAll()">
+                <span id="passoutput" style="color: red;"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary" id="submitBTN" disabled>Login</button>
         </form>
     </div>
+    <script>
+        function checkPassword() {
+            var pw = document.getElementById("pw").value;
+
+            if (pw == '') {
+                document.getElementById("passoutput").innerHTML = "Passwords Empty"
+                return false;
+            } else
+                document.getElementById("passoutput").innerHTML = ""
+            return true
+        }
+
+        function checkEmail() {
+            if (document.getElementById("email").value == '') {
+                document.getElementById("emailoutput").innerHTML = "Email Can't be empty"
+                return false;
+            } else {
+                document.getElementById("emailoutput").innerHTML = ""
+                return true;
+            }
+        }
+
+        function checkAll() {
+            if (checkEmail() && checkPassword())
+                document.getElementById("submitBTN").disabled = false;
+            else
+                document.getElementById("submitBTN").disabled = true;
+
+        }
+    </script>
 </body>
 
 </html>
