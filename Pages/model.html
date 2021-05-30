@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
     <link rel="stylesheet" href="../Styles/Index.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../Styles/LoginRegister.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -41,15 +42,13 @@
                     <i class="fa fa-user icon">
                         <span class="material-icons">create</span>
                     </i>
-                    <input class="input-field" type="text" placeholder="Input Dimensions" name="input_dim"
-                        id="input_dim" oninput="checkAll()">
+                    <input class="input-field" type="text" placeholder="Input Dimensions" name="input_dim" id="input_dim" oninput="checkAll()">
                 </div>
                 <div class="input-container">
                     <i class="fa fa-user icon">
                         <span class="material-icons">tag</span>
                     </i>
-                    <input class="input-field" type="text" placeholder="Number of layers" name="layers" id="layers"
-                        onchange="addFields()">
+                    <input class="input-field" type="text" placeholder="Number of layers" name="layers" id="layers" onchange="addFields()">
                 </div>
                 <div id="container"></div>
                 <div class="input-container">
@@ -109,11 +108,10 @@
             var x = document.getElementById("snackbar");
             x.className = "show";
             document.getElementById('snackbar').innerHTML = 'Model is Running'
-            setTimeout(function () {
+            setTimeout(function() {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
-
     </script>
 </body>
 

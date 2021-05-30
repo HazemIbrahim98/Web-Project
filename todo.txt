@@ -1,0 +1,8 @@
+session timeout
+encripted password
+modify, delete
+ajax onload (https://www.youtube.com/watch?v=3-Fpi9sOS6E&list=PL9TdJ3TcCimjmqNsGXz4iGMAay1HQ1Qul&index=19)
+
+responsive
+
+rubrik
