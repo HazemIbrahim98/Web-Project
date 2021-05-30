@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
     <link rel="stylesheet" href="../Styles/Index.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -25,27 +28,47 @@
         </ul>
     </nav>
 
-        <div id="showMe">
-            <div id="csvDiv">
-                <span id="output"></span>
+    <div id="showMe">
+        <div id="csvDiv">
+            <span id="output"></span>
+        </div>
+        <div class="row margin">
+            <div class="col-6 center">
+                <button class="btn btn-primary" onclick="snackbar()">Clean Dataset</button>
             </div>
-            <div class="row margin">
-                <div class="col-6 center">
-                    <button class="btn btn-primary" onclick="snackbar()">Clean Dataset</button>
-                </div>
-                <div class="col-6 center">
-                    <form action="model.html">
-                        <button class="btn btn-primary" onclick="AboutUs.html">Submit Dataset to models</button>
-                    </form>
-                </div>
+            <div class="col-6 center">
+                <form action="model.html">
+                    <button class="btn btn-primary" onclick="AboutUs.html">Submit Dataset to models</button>
+                </form>
             </div>
         </div>
+    </div>
 
-        <div id="snackbar">Data Cleaned!</div>
+    <div id="snackbar">Data Cleaned!</div>
+
+
+    <a href="../Php/model.php">CLICK ME!</a>
 
     </div>
 
     <script>
+        function model() {
+            $.ajax({
+                type: "POST",
+                url: "../PythonBackend/runner_script.py",
+                data: {
+                    param: "0 3 [[12,4,relu],[8,4,relu],[4,2,sigmoid]] 1",
+                    success: callbackFunc
+                }
+            }).done(function(o) {
+                console.log("DONEEE!")
+            });
+        }
+
+        function callbackFunc(response) {
+            console.log("IT WORKED!")
+            console.log(response);
+        }
 
         function snackbar() {
             var x = document.getElementById("snackbar");
@@ -54,7 +77,6 @@
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
-
     </script>
 </body>
 
