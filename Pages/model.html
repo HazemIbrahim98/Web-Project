@@ -39,8 +39,7 @@
         </div>
         <div id="main">
             <div id="contentDiv">
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown"
-                    onchange="addParams()">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown" onchange="addParams()">
                     <option disabled selected>Choose Machine Learning Model</option>
                     <option value="0">Multilayer Perceptron</option>
                     <option value="1">Decision Tree</option>
@@ -109,9 +108,7 @@
                 container.append(div);
                 container.append(divThen);
                 container.append(div2);
-            }
-
-            else if (value == 1) {
+            } else if (value == 1) {
                 var div = document.createElement("div");
                 div.className = "input-container";
                 var icon = document.createElement("i");
@@ -279,7 +276,7 @@
                 data: {
                     args: args,
                 },
-            }).done(function (data) {
+            }).done(function(data) {
                 alert(data);
                 //TODO: GOTO Result.html
             });
@@ -371,7 +368,7 @@
             var x = document.getElementById("snackbar");
             x.className = "show";
             document.getElementById('snackbar').innerHTML = text
-            setTimeout(function () {
+            setTimeout(function() {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }

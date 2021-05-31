@@ -28,6 +28,6 @@ class modeld_class():
         X_train, X_test, y_train, y_test = train_test_split(
             X_data, Y_data, test_size=0.2)
         model.fit(X_train, y_train)
-        tree.export_graphviz(model, out_file="tree.dot")
-        (graph, ) = pydot.graph_from_dot_file("tree.dot")
+        tree.export_graphviz(model, out_file="result.dot")
+        (graph, ) = pydot.graph_from_dot_file("result.dot")
         graph.write_png(outputPATH)

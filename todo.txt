@@ -9,10 +9,7 @@ in model.html
     make model.php show a ciruclar progress indicator or sth while model runs w ya salam w fy progress bar (tezi sa3ba neek) law we navigate to model.php
 
 responsive
-
-add metadata for search engine optimisation? 2fks law 3ayz
-
-rubrik
+check out procjet rubrik
 
 in index.html add csv shape rules to user
 "    FOR BEST PERFORMANCE OR SOME SHIT:                            "
