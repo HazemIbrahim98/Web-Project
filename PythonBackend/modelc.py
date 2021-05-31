@@ -37,7 +37,7 @@ class model_class():
             "C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv")
 
         X_data = csv_file.drop(target_Y, axis=1)
-        Y_data = csv_file[target_Y]
+        Y_data = csv_file[csv_file.columns[-1]]
         X_data = X_data.drop('Date', axis=1)
         print(len(X_data.columns))
         pre_model = self.model_create(len(X_data.columns))
