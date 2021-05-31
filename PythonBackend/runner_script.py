@@ -26,19 +26,19 @@ if int(sys.argv[1]) == 0:
     final_data_list = [[12,8,'relu'],[8,4,'sigmoid'],[4,2,'sigmoid']]
     epochs = 10
     '''
-    mod = modelc.model_class(
-        model_type, mod_layer_count, final_data_list, epochs)
-
-    print("MADE THE MODEL!!!")
-    print("<br>")
-    #csv_file = pd.read_csv("EURUSD1.csv")
-    # print(csv_file)
-    
     try:
-        mod.model_run('EURUSD1.csv', 'Target')
+        mod = modelc.model_class(
+            model_type, mod_layer_count, final_data_list, epochs)
+
+        print("MADE THE MODEL!!!")
+        print("<br>")
+        #csv_file = pd.read_csv("EURUSD1.csv")
+        # print(csv_file)
+
+        mod.model_run(
+            'C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv', 'Target')
     except Exception as e:
         print(e)
-
 
     print("RAN THE MODEL!!!")
     print("<br")
@@ -57,4 +57,5 @@ elif int(sys.argv[1]) == 1:
         mod.max_depth = None
     else:
         mod.max_depth = int(sys.argv[4])
-    mod.model_run("EURUSD1.csv", "Target")
+    mod.model_run(
+        "C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv", "Target")

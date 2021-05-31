@@ -118,26 +118,21 @@
             }
         }
 
-        function submit() {
+        function submit(args) {
             $.ajax({
                 type: "POST",
                 url: "../Php/model.php",
                 data: {
-                    args: "ARGS",
-                    success: function(response)
-                    {
+                    args: args,
+                    success: function(response) {
                         snackbar("Model is running");
                     }
-                    
+
                 },
-            }).done(function(data){
-                alert(data);
+            }).done(function(data) {
+                //TODO: GOTO Result.html
             });
 
-<<<<<<< HEAD
-            
-=======
->>>>>>> f601929413886a13652881c3329b2328b5c9cce0
         }
 
         function checkAll() {
@@ -151,7 +146,7 @@
                         var neuron = document.getElementById("neuron" + (i + 1)).value;
                         var activ = document.getElementById("select" + (i + 1)).value;
 
-                        layers += ',[' + neuron + ",'" + activ + "']"
+                        layers += ',[' + neuron + "," + activ + "]"
                     }
                     layers = layers.substring(1);
                     var ep = document.getElementById("epochs").value;
@@ -166,9 +161,8 @@
 
                     var args = '1 ' + dp + ' ' + fr + ' ' + lf;
                 }
-                console.log(args)
                 snackbar("Model is running!")
-                    //submit();
+                submit(args);
             }
         }
 

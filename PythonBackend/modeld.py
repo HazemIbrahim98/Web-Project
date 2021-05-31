@@ -19,7 +19,7 @@ class modeld_class():
 
     def model_run(self, path, target_Y):
         model = self.model_create()
-        csv_file = pd.read_csv("EURUSD1.csv")
+        csv_file = pd.read_csv(path)
         X_data = csv_file.drop(target_Y, axis=1)
         Y_data = csv_file[csv_file.columns[-1]]
         X_data = X_data.drop('Date', axis=1)
