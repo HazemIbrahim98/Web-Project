@@ -1,11 +1,12 @@
-from keras import layers
 import pandas as pd
-import numpy as np
-import keras
+
 from tensorflow.keras.layers import Dense
-from keras import Sequential
-from keras.utils.vis_utils import plot_model
+from tensorflow.keras.models import Sequential
+from tensorflow.python.keras.utils.vis_utils import plot_model
 from sklearn.model_selection import train_test_split
+import pydot
+import graphviz
+import pydotplus
 
 class model_class():
     def __init__(self , mod_type , mod_lay, mod_layer_data,epochs):
@@ -14,10 +15,6 @@ class model_class():
         self.model_data = mod_layer_data
         self.epochs = epochs
 
-        
-
-
-
 
     def model_create(self):
         model_self = Sequential()
@@ -25,10 +22,11 @@ class model_class():
         
         for i in range(length):
             print(self.model_data[i][0])
+            act = str(self.model_data[i][2])
             if i == 0:
-                model_self.add(Dense(int(self.model_data[i][0]),input_dim=int(self.model_data[i][1]),activation=str(self.model_data[i][2])))
+                model_self.add(Dense(int(self.model_data[i][0]),input_dim=int(self.model_data[i][1]),activation=act))
             else:
-                model_self.add(Dense(int(self.model_data[i][0]),activation=str(self.model_data[i][2])))
+                model_self.add(Dense(int(self.model_data[i][0]),activation=act))
 
         model_self.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
         return model_self
