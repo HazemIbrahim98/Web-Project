@@ -4,6 +4,9 @@ import modelc
 import modeld
 
 print(os.getcwd())
+# @mo2a comment 2l path da w 7ot 2l path bta3k gmbo w delete this comment
+csvPATH = '../PythonBackend/EURUSD1.csv'
+outputPATH = '../PythonBackend/result.png'
 
 print("Argument Length is: ", len(sys.argv))
 if int(sys.argv[1]) == 0:
@@ -26,15 +29,19 @@ if int(sys.argv[1]) == 0:
     final_data_list = [[12,8,'relu'],[8,4,'sigmoid'],[4,2,'sigmoid']]
     epochs = 10
     '''
-    mod = modelc.model_class(
-        model_type, mod_layer_count, final_data_list, epochs)
+    try:
+        mod = modelc.model_class(
+            model_type, mod_layer_count, final_data_list, epochs)
 
-    print("MADE THE MODEL!!!")
-    #csv_file = pd.read_csv("EURUSD1.csv")
-    # print(csv_file)
-    mod.model_run('EURUSD1.csv', 'Target')
+        print("MADE THE MODEL!!!")
+
+        mod.model_run(
+            csvPATH, outputPATH, 'Target')
+    except Exception as e:
+        print(e)
 
     print("RAN THE MODEL!!!")
+
     #target_model = modelc.model()
 elif int(sys.argv[1]) == 1:
     mod = modeld.modeld_class()
@@ -50,4 +57,5 @@ elif int(sys.argv[1]) == 1:
         mod.max_depth = None
     else:
         mod.max_depth = int(sys.argv[4])
-    mod.model_run("EURUSD1.csv", "Target")
+    mod.model_run(
+        csvPATH, outputPATH, "Target")

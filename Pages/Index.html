@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" content="Neural Networks, Beginners, Online Neural Network">
+    <meta name="description" content="A website for beginners to make their first neural network!">
+    <meta name="author" content="Best Group">
+
     <title>Neural Networks For Dummies</title>
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
@@ -41,7 +46,7 @@
                     <button class="btn btn-primary" onclick="snackbar()">Clean Dataset</button>
                 </div>
                 <div class="col-6 center">
-                    <form action="model.html">
+                    <form action="Model.html">
                         <button class="btn btn-primary">Submit Dataset to models</button>
                     </form>
                 </div>
@@ -73,6 +78,8 @@
 
                 var data = new FormData();
                 data.append("data", fr.result);
+
+                //Send CSV to store on server
                 var xhr = new XMLHttpRequest();
                 xhr.open('post', '../Php/storeCSV.php', true);
                 xhr.send(data);

@@ -1,3 +1,0 @@
-Please Remove Date Columns from your dataset
-Please Make Sure all your data are numeric type
-For DecisionTreeClassifier , Please try to make your target 0 , 1 
