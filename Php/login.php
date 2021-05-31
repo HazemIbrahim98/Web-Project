@@ -12,6 +12,7 @@ $row = mysqli_fetch_array($result);
 
 if ($row) {
     $_SESSION["UserID"] = $row[0];
-    $url = '../Pages/Index.html';
+    header("Location: ../Pages/Index.html");
+    exit;
 } else
     echo "User not found";
