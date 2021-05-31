@@ -21,7 +21,7 @@ class modeld_class():
         model = self.model_create()
         csv_file = pd.read_csv("EURUSD1.csv")
         X_data = csv_file.drop(target_Y, axis=1)
-        Y_data = csv_file[target_Y]
+        Y_data = csv_file[csv_file.columns[-1]]
         X_data = X_data.drop('Date', axis=1)
         try:
             X_train, X_test, y_train, y_test = train_test_split(
