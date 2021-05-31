@@ -63,7 +63,14 @@
                 document.getElementById('showMe')
                     .style.visibility = 'visible';
                 generateTable(fr.result);
+
+                var data = new FormData();
+                data.append("data", fr.result);
+                var xhr = new XMLHttpRequest();
+                xhr.open('post', '../Php/storeCSV.php', true);
+                xhr.send(data);
             }
+
         }
 
         function snackbar() {
