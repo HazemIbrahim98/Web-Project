@@ -1,6 +1,5 @@
 import sys
 import os
-import pandas as pd
 import modelc
 
 print(os.getcwd())
@@ -27,8 +26,12 @@ final_data_list = [[12,8,'relu'],[8,4,'sigmoid'],[4,2,'sigmoid']]
 epochs = 10
 '''
 mod = modelc.model_class(model_type,mod_layer_count,final_data_list,epochs)
+
+print("MADE THE MODEL!!!")
 #csv_file = pd.read_csv("EURUSD1.csv")
 #print(csv_file)
 mod.model_run('EURUSD1.csv','Close')
+
+print("RAN THE MODEL!!!")
 #target_model = modelc.model()
 
