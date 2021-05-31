@@ -39,24 +39,13 @@
         </div>
         <div id="main">
             <div id="contentDiv">
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown"
+                    onchange="addParams()">
                     <option disabled selected>Choose Machine Learning Model</option>
                     <option value="0">Multilayer Perceptron</option>
                     <option value="1">Decision Tree</option>
                 </select>
-                <div class="input-container">
-                    <i class="fa fa-user icon">
-                        <span class="material-icons">tag</span>
-                    </i>
-                    <input class="input-field" type="text" placeholder="Number of layers" name="layers" id="layers" oninput="addFields()">
-                </div>
                 <div id="container"></div>
-                <div class="input-container">
-                    <i class="fa fa-user icon">
-                        <span class="material-icons">timer</span>
-                    </i>
-                    <input class="input-field" type="text" placeholder="Number of epochs" name="epochs" id="epochs">
-                </div>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button class="btn btn-primary" onclick="checkAll()">Train Model</button>
@@ -69,6 +58,166 @@
     </div>
 
     <script>
+        function addParams() {
+            var value = document.getElementById("dropdown").value;
+            var container = document.getElementById("container");
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+
+            if (value == 0) {
+                var div = document.createElement("div");
+                div.className = "input-container";
+                var icon = document.createElement("i");
+                icon.className = "fa fa-user icon";
+                var span = document.createElement("span");
+                span.className = "material-icons";
+                span.textContent = "tag";
+                var input = document.createElement("input");
+                input.className = "input-field"
+                input.type = "text";
+                input.placeholder = "Number of layers";
+                input.name = "layers";
+                input.id = "layers";
+                //input.oninput = "addFieldsMLP()";
+                input.addEventListener("input", addFieldsMLP);
+                var divThen = document.createElement("div");
+                divThen.id = "container2";
+
+                icon.appendChild(span);
+                div.append(icon);
+                div.append(input);
+
+                var div2 = document.createElement("div");
+                div2.className = "input-container";
+                var icon2 = document.createElement("i");
+                icon2.className = "fa fa-user icon";
+                var span2 = document.createElement("span");
+                span2.className = "material-icons";
+                span2.textContent = "timer";
+                var input2 = document.createElement("input");
+                input2.className = "input-field"
+                input2.type = "text";
+                input2.placeholder = "Number of Epochs";
+                input2.name = "epochs";
+                input2.id = "epochs";
+
+                icon2.appendChild(span2);
+                div2.append(icon2);
+                div2.append(input2);
+
+                container.append(div);
+                container.append(divThen);
+                container.append(div2);
+            }
+
+            else if (value == 1) {
+                var div = document.createElement("div");
+                div.className = "input-container";
+                var icon = document.createElement("i");
+                icon.className = "fa fa-user icon";
+                var span = document.createElement("span");
+                span.className = "material-icons";
+                span.textContent = "account_tree";
+                var input = document.createElement("input");
+                input.className = "input-field"
+                input.type = "text";
+                input.placeholder = "Maximum Depth";
+                input.name = "max_depth";
+                input.id = "max_depth";
+                icon.appendChild(span);
+                div.append(icon);
+                div.append(input);
+
+                var div2 = document.createElement("div");
+                div2.className = "input-container";
+                var icon2 = document.createElement("i");
+                icon2.className = "fa fa-user icon";
+                var span2 = document.createElement("span");
+                span2.className = "material-icons";
+                span2.textContent = "park";
+                var input2 = document.createElement("input");
+                input2.className = "input-field"
+                input2.type = "text";
+                input2.placeholder = "Maximum Number of Features";
+                input2.name = "max_features";
+                input2.id = "max_features";
+                icon2.appendChild(span2);
+                div2.append(icon2);
+                div2.append(input2);
+
+                var div3 = document.createElement("div");
+                div3.className = "input-container";
+                var icon3 = document.createElement("i");
+                icon3.className = "fa fa-user icon";
+                var span3 = document.createElement("span");
+                span3.className = "material-icons";
+                span3.textContent = "spa";
+                var input3 = document.createElement("input");
+                input3.className = "input-field"
+                input3.type = "text";
+                input3.placeholder = "Maximum Leaf Nodes";
+                input3.name = "max_leaf_nodes";
+                input3.id = "max_leaf_nodes";
+                icon3.appendChild(span3);
+                div3.append(icon3);
+                div3.append(input3);
+
+                container.append(div);
+                container.append(div2);
+                container.append(div3);
+            }
+        }
+
+        function addFieldsMLP() {
+            // Number of inputs to create
+            var number = document.getElementById("layers").value;
+            var container = document.getElementById("container2");
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i = 0; i < number; i++) {
+                //Create a input field for the neurons
+                var div = document.createElement("div");
+                div.className = "input-container";
+                var icon = document.createElement("i");
+                icon.className = "fa fa-user icon";
+                var span = document.createElement("span");
+                span.className = "material-icons";
+                span.textContent = "layers";
+                var input = document.createElement("input");
+                input.className = "input-field"
+                input.type = "text";
+                input.placeholder = "Number of Neurons for Layer " + (i + 1);
+                input.name = "neuron" + (i + 1);
+                input.id = "neuron" + (i + 1);
+
+
+                var values = ["relu", "leakyrelu", "sigmoid"];
+
+                var select = document.createElement("select");
+                select.name = "select" + (i + 1);
+                select.id = "select" + (i + 1);
+                select.style = "border-radius: 25px; padding: 10px; margin-left: 20px;";
+
+                for (const val of values) {
+                    var option = document.createElement("option");
+                    option.value = val;
+                    option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                    select.appendChild(option);
+                }
+
+                icon.appendChild(span)
+                div.appendChild(icon)
+                div.appendChild(input)
+                div.appendChild(select)
+
+
+                container.appendChild(div);
+
+            }
+        }
+
         function addFields() {
             // Number of inputs to create
             var number = document.getElementById("layers").value;
@@ -130,7 +279,7 @@
                 data: {
                     args: args,
                 },
-            }).done(function(data) {
+            }).done(function (data) {
                 alert(data);
                 //TODO: GOTO Result.html
             });
@@ -222,7 +371,7 @@
             var x = document.getElementById("snackbar");
             x.className = "show";
             document.getElementById('snackbar').innerHTML = text
-            setTimeout(function() {
+            setTimeout(function () {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }

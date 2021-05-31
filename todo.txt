@@ -5,7 +5,6 @@ ajax onload (https://www.youtube.com/watch?v=3-Fpi9sOS6E&list=PL9TdJ3TcCimjmqNsG
 on register law 2l email already exist ydy error instead of redirect (call php from ajax and see the response?)
 
 in model.html
-    display appropriate fields depending on selected model type (aka for decision tree : max_depth, max_features, max_leaf_nodes)
     navigate to model.php and send args
     make model.php show a ciruclar progress indicator or sth while model runs w ya salam w fy progress bar (tezi sa3ba neek) law we navigate to model.php
 
