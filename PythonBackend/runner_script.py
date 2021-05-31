@@ -30,11 +30,18 @@ if int(sys.argv[1]) == 0:
         model_type, mod_layer_count, final_data_list, epochs)
 
     print("MADE THE MODEL!!!")
+    print("<br>")
     #csv_file = pd.read_csv("EURUSD1.csv")
     # print(csv_file)
-    mod.model_run('EURUSD1.csv', 'Target')
+    
+    try:
+        mod.model_run('EURUSD1.csv', 'Target')
+    except Exception as e:
+        print(e)
+
 
     print("RAN THE MODEL!!!")
+    print("<br")
     #target_model = modelc.model()
 elif int(sys.argv[1]) == 1:
     mod = modeld.modeld_class()

@@ -1,3 +1,4 @@
+from re import VERBOSE
 import pandas as pd
 
 from tensorflow.keras.layers import Dense
@@ -19,6 +20,7 @@ class model_class():
 
         for i in range(length):
             print(self.model_data[i][0])
+            print("<br>")
             act = str(self.model_data[i][1])
             if i == 0:
                 model_self.add(
@@ -34,21 +36,22 @@ class model_class():
     def model_run(self, path, target_Y):
 
         csv_file = pd.read_csv(
-            "C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv")
+            "/opt/lampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv")
 
         X_data = csv_file.drop(target_Y, axis=1)
         Y_data = csv_file[csv_file.columns[-1]]
         X_data = X_data.drop('Date', axis=1)
         print(len(X_data.columns))
+        print("<br>")
         pre_model = self.model_create(len(X_data.columns))
         X_train, X_test, y_train, y_test = train_test_split(
             X_data, Y_data, test_size=0.2)
 
-        pre_model.fit(X_train, y_train, epochs=int(self.epochs), batch_size=10)
-        plot_model(pre_model, to_file="C:/xampp/htdocs/Web-Project/PythonBackend/result.png",
+        pre_model.fit(X_train, y_train, epochs=int(self.epochs), batch_size=10,verbose=0)
+        plot_model(pre_model, to_file="result.png",
                    show_shapes=True, show_layer_names=True)
 
         print("<br>")
         print("<br>")
         print("<br>")
-        print(pre_model.summary())
+        #print(pre_model.summary())

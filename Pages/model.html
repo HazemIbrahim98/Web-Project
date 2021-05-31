@@ -123,10 +123,17 @@
                 url: "../Php/model.php",
                 data: {
                     args: "ARGS",
+                    success: function(response)
+                    {
+                        snackbar("Model is running");
+                    }
+                    
                 },
+            }).done(function(data){
+                alert(data);
             });
 
-            snackbar("Model is running");
+            
         }
 
         function checkAll() {
