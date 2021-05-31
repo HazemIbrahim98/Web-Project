@@ -15,5 +15,5 @@ if ($row) {
 } else {
     $sql = "INSERT INTO `users`(`email`, `password`) VALUES ('" . $email . "','" . $password . "')";
     mysqli_query($conn, $sql);
-    echo "Operation Good";
+    header("Location: ../Pages/Index.html");
 }

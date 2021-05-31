@@ -27,28 +27,23 @@
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
+
     <div class="container text-center border">
         <div class="jumbotron text-center">
             <h1>Choose your model <span style="color: #DF91F1;">Here</span></h1>
         </div>
         <div id="main">
             <div id="contentDiv">
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected>Choose Machine Learning Model</option>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown">
+                    <option disabled selected>Choose Machine Learning Model</option>
                     <option value="0">Multilayer Perceptron</option>
                     <option value="1">Decision Tree</option>
                 </select>
                 <div class="input-container">
                     <i class="fa fa-user icon">
-                        <span class="material-icons">create</span>
-                    </i>
-                    <input class="input-field" type="text" placeholder="Input Dimensions" name="input_dim" id="input_dim" oninput="checkAll()">
-                </div>
-                <div class="input-container">
-                    <i class="fa fa-user icon">
                         <span class="material-icons">tag</span>
                     </i>
-                    <input class="input-field" type="text" placeholder="Number of layers" name="layers" id="layers" onchange="addFields()">
+                    <input class="input-field" type="text" placeholder="Number of layers" name="layers" id="layers" oninput="addFields()">
                 </div>
                 <div id="container"></div>
                 <div class="input-container">
@@ -59,7 +54,7 @@
                 </div>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-primary" onclick="snackbar()">Train Model</button>
+                <button class="btn btn-primary" onclick="checkAll()">Train Model</button>
             </div>
         </div>
     </div>
@@ -72,16 +67,15 @@
         function addFields() {
             // Number of inputs to create
             var number = document.getElementById("layers").value;
-            // Container <div> where dynamic content will be placed
             var container = document.getElementById("container");
+
             // Clear previous contents of the container
             while (container.hasChildNodes()) {
                 container.removeChild(container.lastChild);
             }
+
             for (i = 0; i < number; i++) {
-                // Append a node with a random text
-                //container.appendChild(document.createTextNode("Member " + (i+1)));
-                // Create an <input> element, set its type and name attributes
+                //Create a input field for the neurons
                 var div = document.createElement("div");
                 div.className = "input-container";
                 var icon = document.createElement("i");
@@ -95,19 +89,107 @@
                 input.placeholder = "Number of Neurons for Layer " + i;
                 input.name = "neuron" + i;
                 input.id = "neuron" + i;
+
+
+                var values = ["relu", "sigmoid", ""];
+
+                var select = document.createElement("select");
+                select.name = "select" + i;
+                select.id = "select" + i;
+
+                for (const val of values) {
+                    var option = document.createElement("option");
+                    option.value = val;
+                    option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                    select.appendChild(option);
+                }
+
                 icon.appendChild(span)
                 div.appendChild(icon)
                 div.appendChild(input)
+                div.appendChild(select)
+
+
                 container.appendChild(div);
-                // Append a line break 
-                //container.appendChild(document.createElement("br"));
+
+
+                //ADD DROP DOWN FOR LAYER ACTIVATION FUNCTION
             }
         }
 
-        function snackbar() {
+        function submit() {
+            $.ajax({
+                type: "POST",
+                url: "../Php/model.php",
+                data: {
+                    args: "ARGS",
+                },
+            });
+
+            snackbar("Model is running");
+        }
+
+        function checkAll() {
+            if (checkDropdown() && checkLayers() && checkEpochs()) {
+                submit();
+            }
+        }
+
+        function checkDropdown() {
+            var dd = document.getElementById("dropdown").value;
+
+            if (dd == '0' || dd == '1')
+                return true
+            else {
+                snackbar("Please select a model")
+                return false;
+            }
+        }
+
+        function checkLayers() {
+            var number = document.getElementById("layers").value;
+            if (number == '') {
+                snackbar("Please enter number of layers")
+                return false;
+            }
+            for (i = 0; i < number; i++) {
+                var layer = document.getElementById("neuron" + i).value;
+                if (layer == '') {
+                    snackbar('Layer ' + i + " Is empty")
+                    return false;
+                }
+                if (!isInt(layer)) {
+                    snackbar('Please enter a number in Layer ' + i)
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function checkEpochs() {
+            var ep = document.getElementById("epochs").value;
+
+            if (ep == '') {
+                snackbar("Please enter Number of epochs");
+                return false;
+            } else if (!isInt(ep)) {
+                snackbar("Please enter a Number in number of epochs");
+                return false;
+
+            }
+            return true
+        }
+
+        function isInt(value) {
+            return !isNaN(value) &&
+                parseInt(Number(value)) == value &&
+                !isNaN(parseInt(value, 10));
+        }
+
+        function snackbar(text) {
             var x = document.getElementById("snackbar");
             x.className = "show";
-            document.getElementById('snackbar').innerHTML = 'Model is Running'
+            document.getElementById('snackbar').innerHTML = text
             setTimeout(function() {
                 x.className = x.className.replace("show", "");
             }, 3000);

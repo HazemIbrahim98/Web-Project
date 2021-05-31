@@ -3,6 +3,8 @@ encripted password
 modify, delete
 ajax onload (https://www.youtube.com/watch?v=3-Fpi9sOS6E&list=PL9TdJ3TcCimjmqNsGXz4iGMAay1HQ1Qul&index=19)
 
+on register law 2l email already exist ydy error instead of redirect (call php from ajax and see the response?)
+
 responsive
 
 rubrik

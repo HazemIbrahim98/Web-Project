@@ -35,7 +35,7 @@ class model_class():
         pre_model = self.model_create()
 
         csv_file = pd.read_csv(
-            "C:/xampp/htdocs/WebProject/PythonBackend/EURUSD1.csv")
+            "C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv")
 
         X_data = csv_file.drop(target_Y, axis=1)
         Y_data = csv_file[target_Y]
@@ -44,11 +44,10 @@ class model_class():
             X_data, Y_data, test_size=0.2)
 
         pre_model.fit(X_train, y_train, epochs=int(self.epochs), batch_size=10)
-        print("post fit")
-        try:
-            plot_model(pre_model, to_file="C:/xampp/htdocs/WebProject/PythonBackend/result.png",
-                       show_shapes=True, show_layer_names=True)
-        except Exception as e:
-            print(e)
+        plot_model(pre_model, to_file="C:/xampp/htdocs/Web-Project/PythonBackend/result.png",
+                   show_shapes=True, show_layer_names=True)
 
-        print("DONE BISH")
+        print("<br>")
+        print("<br>")
+        print("<br>")
+        print(pre_model.summary())
