@@ -58,6 +58,13 @@
     </div>
 
     <script>
+        
+        function emaillogin(){
+
+            var AcessSessionint;
+            AcessSession= '<%=Session["UserID"]%>'
+            alert(AcessSession);
+        }
         function myUpload() {
             var x = document.getElementById("myFile");
             var fr = new FileReader();
