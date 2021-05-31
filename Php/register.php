@@ -11,7 +11,7 @@ $sql = "SELECT * FROM `users` WHERE email = '" . $email . "'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 if ($row) {
-    echo "THIS SHOULD BE TECHINCALLY UNAVIALIABLE";
+    echo "THIS SHOULD BE TECHINCALLY INACCESSIBLE";
     echo "Email already Exists!";
 } else {
     $sql = "INSERT INTO `users`(`email`, `password`) VALUES ('" . $email . "','" . $password . "')";

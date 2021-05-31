@@ -82,7 +82,6 @@
                 document.getElementById("emailoutput").innerHTML = "Email Can't be empty"
             else {
                 var res = await ajaxCall(email)
-                console.log(res)
 
                 if (res == 'Ok') {
                     document.getElementById("emailoutput").innerHTML = ""
