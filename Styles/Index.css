@@ -1,5 +1,6 @@
 .overlap {
-    position: fixed;
+    position: absolute;
+    align-items: center;
 }
 
 .csv {
@@ -14,6 +15,14 @@
     border: 2px solid #DF91F1;
     padding: 20px;
 }
+
+#hideMe{
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    margin-left: 25%;
+    padding: 10px;
+  }
 
 #showMe {
     visibility: hidden;

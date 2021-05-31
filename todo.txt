@@ -19,12 +19,6 @@ result.dot bttl3 f 2l php file msh pythonbackend for some reason
 responsive
 check out procjet rubrik
 
-in index.html add csv shape rules to user
-"    FOR BEST PERFORMANCE OR SOME SHIT:                            "
-"        Remove all Date columns from your dataset                 "
-"        Make Sure all data id numeric                             "
-"        For DecisionTreeClassifier , Please Taget has to be 0 , 1 "
-"        Target has to be last col                                 "
 
 --------------------To run model from php-----------------------------
 MLP
