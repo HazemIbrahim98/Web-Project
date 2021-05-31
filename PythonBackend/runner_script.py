@@ -4,8 +4,9 @@ import modelc
 import modeld
 
 print(os.getcwd())
-csvPATH = 'C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv'
-outputPATH = 'C:/xampp/htdocs/Web-Project/PythonBackend/result.png'
+# @mo2a comment 2l path da w 7ot 2l path bta3k gmbo w delete this comment
+csvPATH = '../PythonBackend/EURUSD1.csv'
+outputPATH = '../PythonBackend/result.png'
 
 print("Argument Length is: ", len(sys.argv))
 if int(sys.argv[1]) == 0:
