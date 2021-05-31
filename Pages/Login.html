@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neural Networks For Dummies</title>
+
+    <meta name="keywords" content="Neural Networks, Beginners, Online Neural Network">
+    <meta name="description" content="A website for beginners to make their first neural network!">
+    <meta name="author" content="Best Group">
+
+    <title>Neural Networks For Dummies - Login</title>
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
     <link rel="stylesheet" href="../Styles/LoginRegister.css">
@@ -30,7 +35,7 @@
             <h1>Login for no reason whatsoever</h1>
             <p>We promise that we <span style="color: red;">WILL</span> track you on our website and sell your data!</p>
         </div>
-        <form  action="../Php/login.php"method="POST">
+        <form action="../Php/login.php" method="POST">
             <div class="input-container">
                 <i class="fa fa-user icon"> 
                     <span class="material-icons">person</span>
@@ -46,7 +51,7 @@
                 <span id="passoutput" style="color: red;"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary" id="submitBTN" disabled >Login</button>
+            <button type="submit" class="btn btn-primary" id="submitBTN" disabled>Login</button>
         </form>
     </div>
     <script>
@@ -73,7 +78,7 @@
 
         function checkAll() {
             if (checkEmail() && checkPassword())
-                
+
                 document.getElementById("submitBTN").disabled = false;
             else
                 document.getElementById("submitBTN").disabled = true;

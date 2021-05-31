@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" content="Neural Networks, Beginners, Online Neural Network">
+    <meta name="description" content="A website for beginners to make their first neural network!">
+    <meta name="author" content="Best Group">
+
     <title>Neural Networks For Dummies - Make Your Model</title>
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
@@ -27,28 +32,23 @@
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
+
     <div class="container text-center border">
         <div class="jumbotron text-center">
             <h1>Choose your model <span style="color: #DF91F1;">Here</span></h1>
         </div>
         <div id="main">
             <div id="contentDiv">
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected>Choose Machine Learning Model</option>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown">
+                    <option disabled selected>Choose Machine Learning Model</option>
                     <option value="0">Multilayer Perceptron</option>
                     <option value="1">Decision Tree</option>
                 </select>
                 <div class="input-container">
                     <i class="fa fa-user icon">
-                        <span class="material-icons">create</span>
-                    </i>
-                    <input class="input-field" type="text" placeholder="Input Dimensions" name="input_dim" id="input_dim" oninput="checkAll()">
-                </div>
-                <div class="input-container">
-                    <i class="fa fa-user icon">
                         <span class="material-icons">tag</span>
                     </i>
-                    <input class="input-field" type="text" placeholder="Number of layers" name="layers" id="layers" onchange="addFields()">
+                    <input class="input-field" type="text" placeholder="Number of layers" name="layers" id="layers" oninput="addFields()">
                 </div>
                 <div id="container"></div>
                 <div class="input-container">
@@ -59,11 +59,11 @@
                 </div>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-primary" onclick="snackbar()">Train Model</button>
+                <button class="btn btn-primary" onclick="checkAll()">Train Model</button>
             </div>
         </div>
     </div>
-
+    <a href="../Php/model.php"> CLICK ME </a>
     <div id="snackbar">Data Cleaned!</div>
 
     </div>
@@ -72,16 +72,15 @@
         function addFields() {
             // Number of inputs to create
             var number = document.getElementById("layers").value;
-            // Container <div> where dynamic content will be placed
             var container = document.getElementById("container");
+
             // Clear previous contents of the container
             while (container.hasChildNodes()) {
                 container.removeChild(container.lastChild);
             }
-            for (i = 1; i <= number; i++) {
-                // Append a node with a random text
-                //container.appendChild(document.createTextNode("Member " + (i+1)));
-                // Create an <input> element, set its type and name attributes
+
+            for (i = 0; i < number; i++) {
+                //Create a input field for the neurons
                 var div = document.createElement("div");
                 div.className = "input-container";
                 var icon = document.createElement("i");
@@ -92,22 +91,137 @@
                 var input = document.createElement("input");
                 input.className = "input-field"
                 input.type = "text";
-                input.placeholder = "Number of Neurons for Layer " + i;
-                input.name = "neuron" + i;
-                input.id = "neuron" + i;
+                input.placeholder = "Number of Neurons for Layer " + (i + 1);
+                input.name = "neuron" + (i + 1);
+                input.id = "neuron" + (i + 1);
+
+
+                var values = ["relu", "leakyrelu", "sigmoid"];
+
+                var select = document.createElement("select");
+                select.name = "select" + (i + 1);
+                select.id = "select" + (i + 1);
+                select.style = "border-radius: 25px; padding: 10px; margin-left: 20px;";
+
+                for (const val of values) {
+                    var option = document.createElement("option");
+                    option.value = val;
+                    option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                    select.appendChild(option);
+                }
+
                 icon.appendChild(span)
                 div.appendChild(icon)
                 div.appendChild(input)
+                div.appendChild(select)
+
+
                 container.appendChild(div);
-                // Append a line break 
-                //container.appendChild(document.createElement("br"));
+
+
+                //TODO: ADD DROP DOWN FOR LAYER ACTIVATION FUNCTION
             }
         }
 
-        function snackbar() {
+        function submit(args) {
+            $.ajax({
+                type: "POST",
+                url: "../Php/model.php",
+                data: {
+                    args: args,
+                },
+            }).done(function(data) {
+                alert(data);
+                //TODO: GOTO Result.html
+            });
+
+        }
+
+        function checkAll() {
+            if (checkDropdown() && checkLayers() && checkEpochs()) {
+                var dd = document.getElementById("dropdown").value;
+                if (dd == '0') {
+                    //model layers [[num,'activ'],[num,'activ']] epochs
+                    var number = document.getElementById("layers").value;
+                    var layers = '';
+                    for (i = 0; i < number; i++) {
+                        var neuron = document.getElementById("neuron" + (i + 1)).value;
+                        var activ = document.getElementById("select" + (i + 1)).value;
+
+                        layers += ',[' + neuron + "," + activ + "]"
+                    }
+                    layers = layers.substring(1);
+                    var ep = document.getElementById("epochs").value;
+
+                    var args = '0 ' + number + ' [' + layers + '] ' + ep;
+
+                } else {
+                    //model max_depth max_features max_leaf_nodes
+                    var dp = document.getElementById("depth").value;
+                    var fr = document.getElementById("features").value;
+                    var lf = document.getElementById("leaf").value;
+
+                    var args = '1 ' + dp + ' ' + fr + ' ' + lf;
+                }
+                snackbar("Model is running!")
+                submit(args);
+            }
+        }
+
+        function checkDropdown() {
+            var dd = document.getElementById("dropdown").value;
+
+            if (dd == '0' || dd == '1')
+                return true
+            else {
+                snackbar("Please select a model")
+                return false;
+            }
+        }
+
+        function checkLayers() {
+            var number = document.getElementById("layers").value;
+            if (number == '') {
+                snackbar("Please enter number of layers")
+                return false;
+            }
+            for (i = 0; i < number; i++) {
+                var layer = document.getElementById("neuron" + (i + 1)).value;
+                if (layer == '') {
+                    snackbar('Layer ' + (i + 1) + " Is empty")
+                    return false;
+                }
+                if (!isInt(layer)) {
+                    snackbar('Please enter a number in Layer ' + (i + 1))
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function checkEpochs() {
+            var ep = document.getElementById("epochs").value;
+
+            if (ep == '') {
+                snackbar("Please enter Number of epochs");
+                return false;
+            } else if (!isInt(ep)) {
+                snackbar("Please enter a Number in number of epochs");
+                return false;
+            }
+            return true
+        }
+
+        function isInt(value) {
+            return !isNaN(value) &&
+                parseInt(Number(value)) == value &&
+                !isNaN(parseInt(value, 10));
+        }
+
+        function snackbar(text) {
             var x = document.getElementById("snackbar");
             x.className = "show";
-            document.getElementById('snackbar').innerHTML = 'Model is Running'
+            document.getElementById('snackbar').innerHTML = text
             setTimeout(function() {
                 x.className = x.className.replace("show", "");
             }, 3000);

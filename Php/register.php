@@ -2,7 +2,7 @@
 require_once "connect.php";
 
 $email = $_POST["email"];
-$password = $_POST["password"];
+$password = sha1($_POST["password"]);
 
 
 //Make sure user doesn't exist
@@ -15,5 +15,5 @@ if ($row) {
 } else {
     $sql = "INSERT INTO `users`(`email`, `password`) VALUES ('" . $email . "','" . $password . "')";
     mysqli_query($conn, $sql);
-    echo "Operation Good";
+    header("Location: ../Pages/Index.html");
 }
