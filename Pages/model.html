@@ -278,15 +278,16 @@
                 },
             }).done(function(data) {
                 alert(data);
+                console.log(data)
                 //TODO: GOTO Result.html
             });
 
         }
 
         function checkAll() {
-            if (checkDropdown() && checkLayers() && checkEpochs()) {
+            if (checkDropdown()) {
                 var dd = document.getElementById("dropdown").value;
-                if (dd == '0') {
+                if (dd == '0' && checkLayers() && checkEpochs()) {
                     //model layers [[num,'activ'],[num,'activ']] epochs
                     var number = document.getElementById("layers").value;
                     var layers = '';
@@ -300,17 +301,18 @@
                     var ep = document.getElementById("epochs").value;
 
                     var args = '0 ' + number + ' [' + layers + '] ' + ep;
-
-                } else {
+                    snackbar("Model is running!")
+                    submit(args);
+                } else if (dd == '1' && checkDepth() && checkFeatures() && checkLeafs()) {
                     //model max_depth max_features max_leaf_nodes
-                    var dp = document.getElementById("depth").value;
-                    var fr = document.getElementById("features").value;
-                    var lf = document.getElementById("leaf").value;
+                    var dp = document.getElementById("max_depth").value;
+                    var fr = document.getElementById("max_features").value;
+                    var lf = document.getElementById("max_leaf_nodes").value;
 
                     var args = '1 ' + dp + ' ' + fr + ' ' + lf;
+                    snackbar("Model is running!")
+                    submit(args);
                 }
-                snackbar("Model is running!")
-                submit(args);
             }
         }
 
@@ -353,6 +355,45 @@
                 return false;
             } else if (!isInt(ep)) {
                 snackbar("Please enter a Number in number of epochs");
+                return false;
+            }
+            return true
+        }
+
+        function checkDepth() {
+            var ep = document.getElementById("max_depth").value;
+
+            if (ep == '') {
+                snackbar("Please enter Maximum Depth");
+                return false;
+            } else if (!isInt(ep)) {
+                snackbar("Please enter a Number in Maximum Depth");
+                return false;
+            }
+            return true
+        }
+
+        function checkFeatures() {
+            var ep = document.getElementById("max_features").value;
+
+            if (ep == '') {
+                snackbar("Please enter Maximum Number of Features");
+                return false;
+            } else if (!isInt(ep)) {
+                snackbar("Please enter a Number in Maximum Number of Features");
+                return false;
+            }
+            return true
+        }
+
+        function checkLeafs() {
+            var ep = document.getElementById("max_leaf_nodes").value;
+
+            if (ep == '') {
+                snackbar("Please enter Maximum Leaf Nodes");
+                return false;
+            } else if (!isInt(ep)) {
+                snackbar("Please enter a Number in Maximum Leaf Nodes");
                 return false;
             }
             return true
