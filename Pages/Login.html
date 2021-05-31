@@ -55,34 +55,31 @@
         </form>
     </div>
     <script>
-        function checkPassword() {
-            var pw = document.getElementById("pw").value;
-
-            if (pw == '') {
-                document.getElementById("passoutput").innerHTML = "Passwords Empty"
-                return false;
-            } else
+        function updatePassword() {
+            if (document.getElementById("pw").value == '')
+                document.getElementById("passoutput").innerHTML = "Password Can't be nothing"
+            else
                 document.getElementById("passoutput").innerHTML = ""
-            return true
         }
 
-        function checkEmail() {
-            if (document.getElementById("email").value == '') {
+        function updateEmail() {
+            if (document.getElementById("email").value == '')
                 document.getElementById("emailoutput").innerHTML = "Email Can't be empty"
-                return false;
-            } else {
+            else
                 document.getElementById("emailoutput").innerHTML = ""
-                return true;
-            }
         }
 
         function checkAll() {
-            if (checkEmail() && checkPassword())
+            updateEmail();
+            updatePassword();
+            enableButton()
+        }
 
+        function enableButton() {
+            if (document.getElementById("emailoutput").innerHTML == document.getElementById("passoutput").innerHTML)
                 document.getElementById("submitBTN").disabled = false;
             else
                 document.getElementById("submitBTN").disabled = true;
-
         }
     </script>
 </body>

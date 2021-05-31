@@ -63,54 +63,53 @@
         </form>
     </div>
     <script>
-        function checkPassword() {
+        function updatePassword() {
             var pw1 = document.getElementById("pw1").value;
             var pw2 = document.getElementById("pw2").value;
 
-            if (pw1 == '') {
-                document.getElementById("passoutput").innerHTML = "Passwords Empty"
-                return false;
-            }
-            if (pw1 == pw2) {
+            if (pw1 == '')
+                document.getElementById("passoutput").innerHTML = "Password Can't be nothing"
+            else if (pw1 == pw2)
                 document.getElementById("passoutput").innerHTML = ""
-                return true;
-            } else {
+            else
                 document.getElementById("passoutput").innerHTML = "Passwords don't match"
-                return false;
-            }
+
         }
 
-        async function checkEmail() {
+        async function updateEmail() {
             email = document.getElementById("email").value
-            if (email != '' && ajaxCall(email)) {
-                return true;
-            } else {
+            if (email == '')
                 document.getElementById("emailoutput").innerHTML = "Email Can't be empty"
-                return false;
+            else {
+                var res = await ajaxCall(email)
+                console.log(res)
+
+                if (res == 'Ok') {
+                    document.getElementById("emailoutput").innerHTML = ""
+                } else {
+                    document.getElementById("emailoutput").innerHTML = "Email Already Exists"
+                }
             }
         }
 
-        async function ajaxCall(email) {
-            await $.ajax({
+        function ajaxCall(email) {
+            return $.ajax({
                 type: "POST",
                 url: "../Php/checkEmail.php",
                 data: {
                     email: email,
                 },
-            }).done(function(data) {
-                console.log(data)
-                if (data != 'Ok') {
-                    document.getElementById("emailoutput").innerHTML = "Email Already Exists"
-                    return false;
-                } else {
-                    document.getElementById("emailoutput").innerHTML = ""
-                    return true;
-                }
             });
         }
 
-        function checkAll() {
-            if (checkEmail() && checkPassword())
+        async function checkAll() {
+            await updateEmail();
+            updatePassword();
+            enableButton()
+        }
+
+        function enableButton() {
+            if (document.getElementById("emailoutput").innerHTML == document.getElementById("passoutput").innerHTML)
                 document.getElementById("submitBTN").disabled = false;
             else
                 document.getElementById("submitBTN").disabled = true;
