@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
     <link rel="stylesheet" href="../Styles/Index.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../Styles/LoginRegister.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -215,60 +215,6 @@
             }
         }
 
-        function addFields() {
-            // Number of inputs to create
-            var number = document.getElementById("layers").value;
-            var container = document.getElementById("container");
-
-            // Clear previous contents of the container
-            while (container.hasChildNodes()) {
-                container.removeChild(container.lastChild);
-            }
-
-            for (i = 0; i < number; i++) {
-                //Create a input field for the neurons
-                var div = document.createElement("div");
-                div.className = "input-container";
-                var icon = document.createElement("i");
-                icon.className = "fa fa-user icon";
-                var span = document.createElement("span");
-                span.className = "material-icons";
-                span.textContent = "layers";
-                var input = document.createElement("input");
-                input.className = "input-field"
-                input.type = "text";
-                input.placeholder = "Number of Neurons for Layer " + (i + 1);
-                input.name = "neuron" + (i + 1);
-                input.id = "neuron" + (i + 1);
-
-
-                var values = ["relu", "leakyrelu", "sigmoid"];
-
-                var select = document.createElement("select");
-                select.name = "select" + (i + 1);
-                select.id = "select" + (i + 1);
-                select.style = "border-radius: 25px; padding: 10px; margin-left: 20px;";
-
-                for (const val of values) {
-                    var option = document.createElement("option");
-                    option.value = val;
-                    option.text = val.charAt(0).toUpperCase() + val.slice(1);
-                    select.appendChild(option);
-                }
-
-                icon.appendChild(span)
-                div.appendChild(icon)
-                div.appendChild(input)
-                div.appendChild(select)
-
-
-                container.appendChild(div);
-
-
-                //TODO: ADD DROP DOWN FOR LAYER ACTIVATION FUNCTION
-            }
-        }
-
         function submit(args) {
             $.ajax({
                 type: "POST",
@@ -279,9 +225,8 @@
             }).done(function(data) {
                 alert(data);
                 console.log(data)
-                //TODO: GOTO Result.html
+                    //TODO: GOTO Result.html
             });
-
         }
 
         function checkAll() {
