@@ -30,7 +30,7 @@ class modeld_class():
             tree.export_graphviz(model,out_file="tree.dot")
             (graph, ) = pydot.graph_from_dot_file("tree.dot")
             graph.write_png("tree.png")
-
+        
         except Exception as e:
             print(e)
 
