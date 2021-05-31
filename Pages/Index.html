@@ -41,7 +41,7 @@
                     <button class="btn btn-primary" onclick="snackbar()">Clean Dataset</button>
                 </div>
                 <div class="col-6 center">
-                    <form action="model.html">
+                    <form action="Model.html">
                         <button class="btn btn-primary">Submit Dataset to models</button>
                     </form>
                 </div>
@@ -66,6 +66,8 @@
 
                 var data = new FormData();
                 data.append("data", fr.result);
+
+                //Send CSV to store on server
                 var xhr = new XMLHttpRequest();
                 xhr.open('post', '../Php/storeCSV.php', true);
                 xhr.send(data);
