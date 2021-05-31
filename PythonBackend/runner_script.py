@@ -4,6 +4,8 @@ import modelc
 import modeld
 
 print(os.getcwd())
+csvPATH = 'C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv'
+outputPATH = 'C:/xampp/htdocs/Web-Project/PythonBackend/result.png'
 
 print("Argument Length is: ", len(sys.argv))
 if int(sys.argv[1]) == 0:
@@ -31,17 +33,14 @@ if int(sys.argv[1]) == 0:
             model_type, mod_layer_count, final_data_list, epochs)
 
         print("MADE THE MODEL!!!")
-        print("<br>")
-        #csv_file = pd.read_csv("EURUSD1.csv")
-        # print(csv_file)
 
         mod.model_run(
-            'C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv', 'Target')
+            csvPATH, outputPATH, 'Target')
     except Exception as e:
         print(e)
 
     print("RAN THE MODEL!!!")
-    print("<br")
+
     #target_model = modelc.model()
 elif int(sys.argv[1]) == 1:
     mod = modeld.modeld_class()
@@ -58,4 +57,4 @@ elif int(sys.argv[1]) == 1:
     else:
         mod.max_depth = int(sys.argv[4])
     mod.model_run(
-        "C:/xampp/htdocs/Web-Project/PythonBackend/EURUSD1.csv", "Target")
+        csvPATH, outputPATH, "Target")

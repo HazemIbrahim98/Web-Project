@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" content="Neural Networks, Beginners, Online Neural Network">
+    <meta name="description" content="A website for beginners to make their first neural network!">
+    <meta name="author" content="Best Group">
+
     <title>Neural Networks For Dummies - Make Your Model</title>
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
@@ -124,12 +129,9 @@
                 url: "../Php/model.php",
                 data: {
                     args: args,
-                    success: function(response) {
-                        snackbar("Model is running");
-                    }
-
                 },
             }).done(function(data) {
+                alert(data);
                 //TODO: GOTO Result.html
             });
 
