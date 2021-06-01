@@ -42,8 +42,10 @@
         </div>
     </div>
     <script>
+        let name = sessionStorage.getItem('name');
+        console.log(name);
         $(document).ready(function () {
-            $("#res-img").attr("src", "../PythonBackend/result.png").fadeIn();
+            $("#res-img").attr("src", "../Dataset/"+name+"/result.png").fadeIn();
         });
 
         function checkLogin() {
