@@ -33,10 +33,9 @@
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
-
-    <div>
-        <div class="csv overlap text-center" id="hideMe">
-            <div class="jumbotron text-center">
+    <div class="container">
+        <div class="container csv overlap center" id="hideMe">
+            <div class="jumbotron">
                 <h2>How to use our system? <span style="color: red;">It's Easy!</span></h2>
                 <h6>You just have to follow a few steps!</h6>
                 <div id="checklist" class="center">
@@ -53,7 +52,7 @@
                 </div>
             </div>
             Upload a .csv Dataset to begin! <br><br>
-            <input type="file" class="form" accept=".csv" id="myFile">
+            <input type="file" accept=".csv" id="myFile" placeholder="">
             <p id="demo"></p>
             <button type="submit" class="btn btn-primary" id="submit-file" onclick="myUpload()" disabled> Upload</button>
             <br>
@@ -62,9 +61,10 @@
 
         <div id="showMe">
             <div id="csvDiv">
-                <span id="output" style="padding: 5%;"></span>
+                <span id="output"></span>
             </div>
-            <div class="row margin">
+            <br><br>
+            <div class="row">
                 <div class="col-6 center">
                     <button class="btn btn-primary" onclick="snackbar()">Clean Dataset</button>
                 </div>
@@ -75,10 +75,9 @@
                 </div>
             </div>
         </div>
-
-        <div id="snackbar">Data Cleaned!</div>
-
     </div>
+
+    <div id="snackbar">Data Cleaned!</div>
 
     <script>
         function checkLogin() {
