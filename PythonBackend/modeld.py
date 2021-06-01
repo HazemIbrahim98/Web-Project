@@ -16,12 +16,13 @@ class modeld_class():
             max_depth=self.max_depth, max_features=self.max_features, max_leaf_nodes=self.max_leaf_nodes)
         return model_self
 
-    def model_run(self, path, target_Y):
+    def model_run(self, path):
         model = self.model_create()
         csv_file = pd.read_csv(path + 'DATASET.csv')
-        X_data = csv_file.drop(target_Y, axis=1)
         Y_data = csv_file[csv_file.columns[-1]]
-        X_data = X_data.drop('Date', axis=1)
+        X_data = csv_file.iloc[:,:-1]
+        
+        #X_data = X_data.drop('Date', axis=1)
 
         X_train, X_test, y_train, y_test = train_test_split(
             X_data, Y_data, test_size=0.2)
