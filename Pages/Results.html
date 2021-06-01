@@ -42,11 +42,8 @@
         </div>
     </div>
     <script>
-        console.log(sessionStorage.getItem('accuracy'))
-
-
-        let name = sessionStorage.getItem('name');
-        console.log(name);
+        console.log(sessionStorage.getItem('accuracy'));
+        var name = sessionStorage.getItem('name');
         $(document).ready(function() {
             $("#res-img").attr("src", "../Dataset/" + name + "/result.png").fadeIn();
         });
@@ -59,12 +56,12 @@
                     var: 'name',
                 },
             }).done(function(data) {
-                console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in
                     var elem = document.getElementById("delme1");
                     elem.parentNode.removeChild(elem);
-
+                    var accuracy_element = document.getElementById("acc");
+                    accuracy_element.innerHTML = sessionStorage.getItem('accuracy').toString();
                     elem = document.getElementById("delme2");
                     elem.parentNode.removeChild(elem);
 

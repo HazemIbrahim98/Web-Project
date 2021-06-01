@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+add accuracy to results.html
+
+in account.html
+    add a delete button to delete user mn database
+
+>>>>>>> 41aa6c691ae6c80c14cbb64fbae9361744a0f9ec
 in model.html
     display a loading scree wla hga lma 2l model ybd2 y run
     lma y5ls law error whla hga print error else navigate to results.html

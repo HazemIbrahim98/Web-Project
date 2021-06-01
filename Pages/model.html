@@ -53,6 +53,8 @@
     </div>
     <div id="snackbar">Data Cleaned!</div>
 
+    <div id="blur"></div>
+
     </div>
 
     <script>
@@ -64,7 +66,6 @@
                     var: 'name',
                 },
             }).done(function(data) {
-                console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in
                     var elem = document.getElementById("delme1");
