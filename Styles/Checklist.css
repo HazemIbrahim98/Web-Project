@@ -9,10 +9,10 @@
     position: relative;
     box-shadow: 0 10px 30px #E9ECEF;
     padding-top: 25px;
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 30px auto;
     align-items: center;
-    margin-left: 16%;
+    text-align: center;
 }
 
 #checklist label {
