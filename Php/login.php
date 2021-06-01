@@ -12,7 +12,7 @@ $row = mysqli_fetch_array($result);
 
 if ($row) {
     session_start();
-    $_SESSION["email"] = $row;
+    $_SESSION["email"] = $row["email"];
     header("Location: ../Pages/Index.html");
 } else {
     echo "THIS SHOULD BE TECHINCALLY INACCESSIBLE";
