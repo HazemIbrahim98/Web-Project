@@ -49,5 +49,5 @@ class model_class():
         plot_model(pre_model, to_file=path + '/result.png',
                    show_shapes=True, show_layer_names=True)
 
-        y_pred = pre_model.evaluate(X_test,y_test)
-        print(y_pred)
+        _,y_pred = pre_model.evaluate(X_test,y_test)
+        print('Accuracy: %.2f' % (y_pred*100))
