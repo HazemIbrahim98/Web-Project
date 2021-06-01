@@ -98,6 +98,7 @@
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
+
         function snackbar2() {
             var x = document.getElementById("snackbar2");
             x.className = "show";
@@ -131,17 +132,6 @@
 
         }
 
-
-        function ajaxCall(email) {
-            return $.ajax({
-                type: "POST",
-                url: "../Php/checkEmail.php",
-                data: {
-                    email: email,
-                },
-            });
-        }
-
         async function checkAll() {
             updatePassword();
             enableButton()
@@ -164,7 +154,6 @@
                     var: 'name',
                 },
             }).done(function(data) {
-                console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in
                     var elem = document.getElementById("delme1");
@@ -187,9 +176,10 @@
                     replace.parentNode.replaceChild(replaceBy, replace);
                 }
             });
+
             function capital(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
         }
     </script>
 </body>
