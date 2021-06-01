@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
     <link rel="stylesheet" href="../Styles/Index.css">
+    <link rel="stylesheet" href="../Styles/Checklist.css">
 </head>
 
 <body onload="emaillogin()">
@@ -28,6 +29,19 @@
     </nav>
     <div>
         <div class="csv overlap text-center" id="hideMe">
+            <div class="jumbotron text-center">
+                <h2>FOR BEST PERFORMANCE OR SOME <span style="color: red;">SHIT</span></h2>
+                <div id="checklist">
+                    <input id="01" type="checkbox" name="r" value="1">
+                    <label for="01">Remove all Date columns from your dataset</label>
+                    <input id="02" type="checkbox" name="r" value="2">
+                    <label for="02">Make Sure all data id numeric</label>
+                    <input id="03" type="checkbox" name="r" value="3">
+                    <label for="03">For Decision Tree: Please Target has to be 0 or 1</label>
+                    <input id="04" type="checkbox" name="r" value="4">
+                    <label for="04">Target has to be last column</label>
+                </div>
+            </div>
             Upload a .csv Dataset to begin! <br><br>
             <input type="file" class="form" accept=".csv" id="myFile">
             <p id="demo"></p>
@@ -95,7 +109,7 @@
             var x = document.getElementById("myFile");
             var fr = new FileReader();
             fr.readAsText(x.files[0]);
-            fr.onload = function() {
+            fr.onload = function () {
                 document.getElementById('hideMe')
                     .style.visibility = 'hidden';
                 document.getElementById('showMe')
@@ -116,7 +130,7 @@
         function snackbar() {
             var x = document.getElementById("snackbar");
             x.className = "show";
-            setTimeout(function() {
+            setTimeout(function () {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }

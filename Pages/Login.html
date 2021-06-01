@@ -13,8 +13,11 @@
     <title>Neural Networks For Dummies - Login</title>
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
+    <link rel="stylesheet" href="../Styles/Index.css">
     <link rel="stylesheet" href="../Styles/LoginRegister.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -35,7 +38,7 @@
             <h1>Login for no reason whatsoever</h1>
             <p>We promise that we <span style="color: red;">WILL</span> track you on our website and sell your data!</p>
         </div>
-        <form action="../Php/login.php" method="POST">
+        <form action="../Php/login.php" method="POST" id="myForm">
             <div class="input-container">
                 <i class="fa fa-user icon"> 
                     <span class="material-icons">person</span>
@@ -51,38 +54,69 @@
                 <span id="passoutput" style="color: red;"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary" id="submitBTN" disabled>Login</button>
+            <button type="button" class="btn btn-primary" id="submitBTN" disabled onclick="checkLoginInfo()">Login</button>
         </form>
+
+        <div id="snackbar">Invalid Username or Password</div>
     </div>
     <script>
-        function checkPassword() {
-            var pw = document.getElementById("pw").value;
+        async function checkLoginInfo() {
+            email = document.getElementById("email").value;
+            password = document.getElementById("pw").value;
+            var res = await ajaxCall(email, password)
+            console.log(res);
+            if (res == 'Ok') {
+                document.getElementById("myForm").submit();
+            } else {
+                snackbar();
+            }
 
-            if (pw == '') {
-                document.getElementById("passoutput").innerHTML = "Passwords Empty"
-                return false;
-            } else
-                document.getElementById("passoutput").innerHTML = ""
-            return true
         }
 
-        function checkEmail() {
-            if (document.getElementById("email").value == '') {
+        function snackbar() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
+
+        function ajaxCall(email, password) {
+            return $.ajax({
+                type: "POST",
+                url: "../Php/checkLoginInfo.php",
+                data: {
+                    email: email,
+                    password: password
+                }
+            });
+        }
+
+        function updatePassword() {
+            if (document.getElementById("pw").value == '')
+                document.getElementById("passoutput").innerHTML = "Password Can't be nothing"
+            else
+                document.getElementById("passoutput").innerHTML = ""
+        }
+
+        function updateEmail() {
+            if (document.getElementById("email").value == '')
                 document.getElementById("emailoutput").innerHTML = "Email Can't be empty"
-                return false;
-            } else {
+            else
                 document.getElementById("emailoutput").innerHTML = ""
-                return true;
-            }
         }
 
         function checkAll() {
-            if (checkEmail() && checkPassword())
+            updateEmail();
+            updatePassword();
+            enableButton()
+        }
 
+        function enableButton() {
+            if (document.getElementById("emailoutput").innerHTML == document.getElementById("passoutput").innerHTML)
                 document.getElementById("submitBTN").disabled = false;
             else
                 document.getElementById("submitBTN").disabled = true;
-
         }
     </script>
 </body>

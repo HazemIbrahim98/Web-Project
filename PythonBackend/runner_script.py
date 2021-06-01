@@ -15,6 +15,7 @@ if int(sys.argv[1]) == 0:
     mod_layer_data_string = sys.argv[3]
     print(mod_layer_data_string)
 
+    # Convert args string to array
     mod_data_list = mod_layer_data_string.split("],")
     d = [i.strip('[') for i in mod_data_list]
     d = [i.strip(']') for i in d]
