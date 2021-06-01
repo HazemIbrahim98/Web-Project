@@ -1,0 +1,11 @@
+.blur {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    --px: 8px;
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -ms-filter: blur(8px);
+    -o-filter: blur(8px);
+    filter: blur(8px);
+}
