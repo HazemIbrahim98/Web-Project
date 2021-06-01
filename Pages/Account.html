@@ -47,40 +47,52 @@
             <h1>Register and give us your DATA</h1>
             <p>We promise that we <span style="color: red;">WILL</span> sell your data!</p>
         </div>
-        <form action="../Php/register.php" method="POST">
-            <div class="input-container">
-                <i class="fa fa-user icon"> 
-                    <span class="material-icons">person</span>
-                </i>
-                <input class="input-field" type="text" placeholder="Email" name="email" id="email" oninput="checkAll()" maxlength="30">
-                <span id="emailoutput" style="color: red;"></span>
+        <form action="../Php/register.php" method="POST"></form>
+        <div class="input-container">
+            <i class="fa fa-user icon">
+                <span class="material-icons">person</span>
+            </i>
+            <input class="input-field" type="text" placeholder="Email" name="email" id="email" oninput="checkAll()"
+                maxlength="30">
+            <span id="emailoutput" style="color: red;"></span>
+        </div>
+        <div class="input-container">
+            <i class="fa fa-key icon">
+                <span class="material-icons">lock</span>
+            </i>
+            <input class="input-field" type="password" placeholder="Password" id="pw1" name="password"
+                oninput="checkAll()" maxlength="10">
+        </div>
+        <div class="input-container">
+            <i class="fa fa-key icon">
+                <span class="material-icons">lock</span>
+            </i>
+            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2"
+                oninput="checkAll()" maxlength="10">
+            <span id="passoutput" style="color: red;"></span>
+        </div>
+        <div class="input-container">
+            <i class="fa fa-key icon">
+                <span class="material-icons">lock</span>
+            </i>
+            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2"
+                oninput="checkAll()" maxlength="10">
+            <span id="passoutput" style="color: red;"></span>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary" id="submitBTN" disabled onclick="updateLoginInfo()">Update
+                    Password</button>
             </div>
-            <div class="input-container">
-                <i class="fa fa-key icon">
-                    <span class="material-icons">lock</span>
-                </i>
-                <input class="input-field" type="password" placeholder="Password" id="pw1" name="password" oninput="checkAll()" maxlength="10">
+            <div class="col-6">
+                <button type="button" class="btn btn-primary" id="logoutBTN" onclick="logout()">Sign out</button>
             </div>
-            <div class="input-container">
-                <i class="fa fa-key icon">
-                    <span class="material-icons">lock</span>
-                </i>
-                <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
-                <span id="passoutput" style="color: red;"></span>
-            </div>
-            <div class="input-container">
-                <i class="fa fa-key icon">
-                    <span class="material-icons">lock</span>
-                </i>
-                <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
-                <span id="passoutput" style="color: red;"></span>
-            </div>
-            <button type="submit" class="btn btn-primary" id="submitBTN" disabled onclick="updateLoginInfo()">Update Password</button>
+        </div>
+        <div id="snackbar"></div>
         </form>
     </div>
     <script>
-        async function updateLoginInfo()
-        {
+        async function updateLoginInfo() {
             email = document.getElementById("email").value;
             password = document.getElementById("pw1").value;
             var res = await ajaxCall(email, password);
@@ -91,11 +103,19 @@
                 snackbar();
             }
         }
-        
+        async function logout() {
+            var res = await ajaxCall2();
+            console.log(res);
+            if (res == 'Ok') {
+                window.location = "Index.html";
+            } else {
+                snackbar();
+            }
+        }
         function snackbar() {
             var x = document.getElementById("snackbar");
             x.className = "show";
-            setTimeout(function() {
+            setTimeout(function () {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
@@ -107,6 +127,12 @@
                     email: email,
                     password: password
                 }
+            });
+        }
+        function ajaxCall2() {
+            return $.ajax({
+                type: "POST",
+                url: "../Php/logout.php",
             });
         }
         function updatePassword() {
@@ -167,7 +193,7 @@
                 data: {
                     var: 'email',
                 },
-            }).done(function(data) {
+            }).done(function (data) {
                 console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in

@@ -1,4 +1,4 @@
-put anything in aboutus
+add accuracy to results.html
 
 add timeout to session php
 
@@ -6,8 +6,6 @@ in account.html
     account.html atm is register.html f hya m7taga 7d y3mlha w y3ml 2l php bt3ha w sql connection w kda y3ny
     5ly register yb2a modify w t call modify.php w abl m tcall check 2n 2l new email msh taken
     also add a delete button to delete user mn database
-
-ajax onload function (idk what this is) (https://www.youtube.com/watch?v=3-Fpi9sOS6E&list=PL9TdJ3TcCimjmqNsGXz4iGMAay1HQ1Qul&index=19)
 
 in model.html
     display a loading scree wla hga lma 2l model ybd2 y run
