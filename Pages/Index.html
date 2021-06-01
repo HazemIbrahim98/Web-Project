@@ -39,15 +39,17 @@
             <div class="jumbotron text-center">
                 <h2>How to use our system? <span style="color: red;">It's Easy!</span></h2>
                 <h6>You just have to follow a few steps!</h6>
-                <div id="checklist">
+                <div id="checklist" class="center">
+                    <input id="00" type="checkbox" name="r" value="0">
+                    <label for="00">First things first, you have to Login!</label>
+                    <input id="02" type="checkbox" name="r" value="2">
+                    <label for="02">Prepare a Dataset and Make Sure all data is Numeric</label>
                     <input id="01" type="checkbox" name="r" value="1">
                     <label for="01">Remove all Date columns from your dataset</label>
-                    <input id="02" type="checkbox" name="r" value="2">
-                    <label for="02">Make Sure all data is Numeric</label>
                     <input id="03" type="checkbox" name="r" value="3">
-                    <label for="03">Target has to be the last column</label>
+                    <label for="03">Model predected result has to be the last column</label>
                     <input id="04" type="checkbox" name="r" value="4">
-                    <label for="04">For Decision Tree: Target has to be 0 or 1</label>
+                    <label for="04">For Decision Tree: Result has to be 0 or 1</label>
                 </div>
             </div>
             Upload a .csv Dataset to begin! <br><br>
