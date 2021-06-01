@@ -15,22 +15,57 @@
         <title>Neural Networks For Dummies</title>
         <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../Styles/nav.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     </head>
 </head>
 
-<body>
+<body onload="checkLogin()">
     <nav class="nav">
         <a href="Index.html">
             <img src="../Assets/Logo.png" alt="Logo Image">
         </a>
         <ul>
-            <li class="nav-Li"><a href="Login.html">Login</a></li>
-            <span class="separator">|</span>
-            <li class="nav-Li"><a href="Register.html">Register</a></li>
+            <li class="nav-Li" id="delme1"><a href="Login.html">Login</a></li>
+            <span class="separator" id="delme2">|</span>
+            <li class="nav-Li" id="replaceme"><a href="Register.html">Register</a></li>
             <span class="separator">|</span>
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
+    <script>
+        function checkLogin() {
+            $.ajax({
+                type: "POST",
+                url: "../Php/getSessionVariable.php",
+                data: {
+                    var: 'email',
+                },
+            }).done(function(data) {
+                console.log(data)
+                if (data != '') {
+                    //change nav bar if user is logged in
+                    var elem = document.getElementById("delme1");
+                    elem.parentNode.removeChild(elem);
+
+                    elem = document.getElementById("delme2");
+                    elem.parentNode.removeChild(elem);
+
+                    var replace = document.getElementById("replaceme");
+                    var replaceBy = document.createElement("li");
+                    //<li class="nav-Li"><a href="Account.html">USER EMAIL</a></li>                    
+                    replaceBy.className = "nav-Li";
+
+                    var href = document.createElement("a")
+                    href.innerHTML = data
+                    href.href = "Account.html"
+
+                    replaceBy.appendChild(href);
+
+                    replace.parentNode.replaceChild(replaceBy, replace);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

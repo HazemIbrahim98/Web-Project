@@ -16,13 +16,13 @@
     padding: 20px;
 }
 
-#hideMe{
+#hideMe {
     text-align: center;
     margin: auto;
     width: 50%;
     margin-left: 25%;
     padding: 10px;
-  }
+}
 
 #showMe {
     visibility: hidden;
@@ -47,6 +47,10 @@
     background-color: white;
     color: black;
     border-color: black;
+}
+
+.btn:disabled {
+    background-color: red !important;
 }
 
 #csvDiv {
