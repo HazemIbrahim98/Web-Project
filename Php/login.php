@@ -17,9 +17,19 @@ if ($row) {
     $str_exploded = explode("@",$_SESSION["email"]);
     $_SESSION["name"] = $str_exploded[0];
     $path = "../Dataset/".$_SESSION["name"];
-    mkdir($path,777);
-    header("Location: ../Pages/Index.html");
+    mkdir($path,0777);
+    chmod($path,0777);
+    
+    echo '<script type="text/javascript">';
+    echo "sessionStorage.setItem('name','".$str_exploded[0] ."');";
+    echo "window.location.href = '../Pages/Index.html';";
+    
+    
+    echo "</script>";
+
+    //header("Location: ../Pages/Index.html");
 } else {
     echo "THIS SHOULD BE TECHINCALLY INACCESSIBLE";
     echo "User not found";
 }
+?>

@@ -19,7 +19,7 @@ class modeld_class():
 
     def model_run(self, path):
         model = self.model_create()
-        csv_file = pd.read_csv(path + 'DATASET.csv')
+        csv_file = pd.read_csv(path + '/dataset.csv')
         Y_data = csv_file[csv_file.columns[-1]]
         X_data = csv_file.iloc[:, :-1]
 
