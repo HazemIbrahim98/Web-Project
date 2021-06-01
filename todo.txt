@@ -1,6 +1,5 @@
 add accuracy to results.html
 
-add timeout to session php
 
 in account.html
     account.html atm is register.html f hya m7taga 7d y3mlha w y3ml 2l php bt3ha w sql connection w kda y3ny
