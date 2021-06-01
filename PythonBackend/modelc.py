@@ -49,5 +49,5 @@ class model_class():
         plot_model(pre_model, to_file=path + '/result.png',
                    show_shapes=True, show_layer_names=True)
 
-        _,y_pred = pre_model.evaluate(X_test,y_test,verbose=0)
-        print('%.2f' % (y_pred*100))
+        _,y_pred = pre_model.evaluate(X_test,y_test, verbose=0)
+        print(y_pred*100)
