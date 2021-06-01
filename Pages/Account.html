@@ -52,26 +52,33 @@
             <i class="fa fa-key icon">
                 <span class="material-icons">lock</span>
             </i>
-            <input class="input-field" type="password" placeholder="Password" id="pw1" name="password" oninput="checkAll()" maxlength="10">
+            <input class="input-field" type="password" placeholder="Password" id="pw1" name="password"
+                oninput="checkAll()" maxlength="10">
         </div>
         <div class="input-container">
             <i class="fa fa-key icon">
                 <span class="material-icons">lock</span>
             </i>
-            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
+            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2"
+                oninput="checkAll()" maxlength="10">
             <span id="passoutput" style="color: red;"></span>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col">
                 <button type="submit" class="btn btn-primary" id="submitBTN" disabled onclick="updateLoginInfo()">Update
                     Password</button>
             </div>
-            <div class="col-6">
+            <div class="col">
+                <button type="button" class="btn btn-primary" id="deleteBTN" onclick="deleteAccount()">Delete
+                    Account</button>
+            </div>
+            <div class="col">
                 <button type="button" class="btn btn-primary" id="logoutBTN" onclick="logout()">Sign out</button>
             </div>
         </div>
         <div id="snackbar">Password successfully updated</div>
         <div id="snackbar2">Error</div>
+        <div id="snackbar3">Account Deleted</div>
     </div>
     <script>
         async function updateLoginInfo() {
@@ -82,12 +89,20 @@
             var res = await ajaxCall(email, password);
             console.log(res);
             if (res) {
-                window.location.href = "Index.html";
                 snackbar();
+                window.location.href = "Index.html";
             } else {
                 snackbar2();
             }
         }
+
+        async function deleteAccount() {
+            let email = sessionStorage.getItem('email');
+            var res = await ajaxDelete(email);
+            snackbar3();
+            window.location.href = "../Php/logout.php"
+        }
+
         async function logout() {
             window.location.href = "../Php/logout.php"
         }
@@ -95,7 +110,7 @@
         function snackbar() {
             var x = document.getElementById("snackbar");
             x.className = "show";
-            setTimeout(function() {
+            setTimeout(function () {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
@@ -103,7 +118,14 @@
         function snackbar2() {
             var x = document.getElementById("snackbar2");
             x.className = "show";
-            setTimeout(function() {
+            setTimeout(function () {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
+        function snackbar3() {
+            var x = document.getElementById("snackbar3");
+            x.className = "show";
+            setTimeout(function () {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
@@ -115,6 +137,16 @@
                 data: {
                     email: email,
                     password: password
+                }
+            });
+        }
+
+        function ajaxDelete(email) {
+            return $.ajax({
+                type: "POST",
+                url: "../Php/delete.php",
+                data: {
+                    email: email
                 }
             });
         }
@@ -140,7 +172,7 @@
         function enableButton() {
             var pw1 = document.getElementById("pw1").value;
             var pw2 = document.getElementById("pw2").value;
-            if (pw1 == pw2)
+            if (pw1 == pw2 && pw1 != '')
                 document.getElementById("submitBTN").disabled = false;
             else
                 document.getElementById("submitBTN").disabled = true;
