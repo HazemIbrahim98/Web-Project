@@ -47,17 +47,10 @@ if int(sys.argv[1]) == 0:
     #target_model = modelc.model()
 elif int(sys.argv[1]) == 1:
     mod = modeld.modeld_class()
-    if sys.argv[2] == "None":
-        mod.max_depth = None
-    else:
-        mod.max_depth = int(sys.argv[2])
-    if sys.argv[3] == "None":
-        mod.max_depth = None
-    else:
-        mod.max_depth = int(sys.argv[3])
-    if sys.argv[4] == "None":
-        mod.max_depth = None
-    else:
-        mod.max_depth = int(sys.argv[4])
+
+    mod.max_depth = int(sys.argv[2])
+    mod.max_depth = int(sys.argv[3])
+    mod.max_depth = int(sys.argv[4])
+
     mod.model_run(
         filePATH, "Target")
