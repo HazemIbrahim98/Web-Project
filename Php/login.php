@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(0);
 session_start();
 require_once "connect.php";
 
@@ -22,6 +23,7 @@ if ($row) {
     
     echo '<script type="text/javascript">';
     echo "sessionStorage.setItem('name','".$str_exploded[0] ."');";
+    echo "sessionStorage.setItem('email','".$email."');";
     echo "window.location.href = '../Pages/Index.html';";
     
     
