@@ -22,6 +22,7 @@
     <title>Neural Networks For Dummies - Register</title>
     <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/nav.css">
+    <link rel="stylesheet" href="../Styles/Index.css">
     <link rel="stylesheet" href="../Styles/LoginRegister.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -47,26 +48,11 @@
             <h1>Register and give us your DATA</h1>
             <p>We promise that we <span style="color: red;">WILL</span> sell your data!</p>
         </div>
-        <form action="../Php/register.php" method="POST"></form>
-        <div class="input-container">
-            <i class="fa fa-user icon">
-                <span class="material-icons">person</span>
-            </i>
-            <input class="input-field" type="text" placeholder="Email" name="email" id="email" oninput="checkAll()" maxlength="30">
-            <span id="emailoutput" style="color: red;"></span>
-        </div>
         <div class="input-container">
             <i class="fa fa-key icon">
                 <span class="material-icons">lock</span>
             </i>
             <input class="input-field" type="password" placeholder="Password" id="pw1" name="password" oninput="checkAll()" maxlength="10">
-        </div>
-        <div class="input-container">
-            <i class="fa fa-key icon">
-                <span class="material-icons">lock</span>
-            </i>
-            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
-            <span id="passoutput" style="color: red;"></span>
         </div>
         <div class="input-container">
             <i class="fa fa-key icon">
@@ -84,19 +70,21 @@
                 <button type="button" class="btn btn-primary" id="logoutBTN" onclick="logout()">Sign out</button>
             </div>
         </div>
-        <div id="snackbar"></div>
-        </form>
+        <div id="snackbar">Password successfully updated</div>
+        <div id="snackbar2">Error</div>
     </div>
     <script>
         async function updateLoginInfo() {
-            email = document.getElementById("email").value;
+            let email = sessionStorage.getItem('email');
+            console.log(email);
             password = document.getElementById("pw1").value;
             var res = await ajaxCall(email, password);
             console.log(res);
             if (res == 'Ok') {
-                document.getElementById("myForm").submit();
-            } else {
+                window.location.href = "Index.html";
                 snackbar();
+            } else {
+                snackbar2();
             }
         }
         async function logout() {
@@ -110,11 +98,18 @@
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
+        function snackbar2() {
+            var x = document.getElementById("snackbar2");
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
 
         function ajaxCall(email, password) {
             return $.ajax({
                 type: "POST",
-                url: "../Php/checkpassword.php",
+                url: "../Php/modify.php",
                 data: {
                     email: email,
                     password: password
@@ -136,20 +131,6 @@
 
         }
 
-        async function updateEmail() {
-            email = document.getElementById("email").value
-            if (email == '')
-                document.getElementById("emailoutput").innerHTML = "Email Can't be empty"
-            else {
-                var res = await ajaxCall(email)
-
-                if (res == 'Ok') {
-                    document.getElementById("emailoutput").innerHTML = ""
-                } else {
-                    document.getElementById("emailoutput").innerHTML = ""
-                }
-            }
-        }
 
         function ajaxCall(email) {
             return $.ajax({
@@ -162,13 +143,14 @@
         }
 
         async function checkAll() {
-            await updateEmail();
             updatePassword();
             enableButton()
         }
 
         function enableButton() {
-            if (document.getElementById("emailoutput").innerHTML == document.getElementById("passoutput").innerHTML)
+            var pw1 = document.getElementById("pw1").value;
+            var pw2 = document.getElementById("pw2").value;
+            if (pw1 == pw2)
                 document.getElementById("submitBTN").disabled = false;
             else
                 document.getElementById("submitBTN").disabled = true;
@@ -179,7 +161,7 @@
                 type: "POST",
                 url: "../Php/getSessionVariable.php",
                 data: {
-                    var: 'email',
+                    var: 'name',
                 },
             }).done(function(data) {
                 console.log(data)
@@ -197,7 +179,7 @@
                     replaceBy.className = "nav-Li";
 
                     var href = document.createElement("a")
-                    href.innerHTML = data
+                    href.innerHTML = capital(data)
                     href.href = "Account.html"
 
                     replaceBy.appendChild(href);
@@ -205,6 +187,9 @@
                     replace.parentNode.replaceChild(replaceBy, replace);
                 }
             });
+            function capital(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
         }
     </script>
 </body>
