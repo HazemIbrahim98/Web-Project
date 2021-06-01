@@ -2,6 +2,7 @@ from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn import metrics
 import pydot
 
 
@@ -27,6 +28,8 @@ class modeld_class():
         X_train, X_test, y_train, y_test = train_test_split(
             X_data, Y_data, test_size=0.2)
         model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+        print("Accuracy: ", metrics.accuracy_score(y_test,y_pred))
         tree.export_graphviz(model, out_file=path + "result.dot")
         (graph, ) = pydot.graph_from_dot_file(path + "result.dot")
         graph.write_png(path + "result.png")
