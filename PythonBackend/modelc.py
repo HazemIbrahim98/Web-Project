@@ -4,6 +4,7 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Sequential
 from tensorflow.python.keras.utils.vis_utils import plot_model
 from sklearn.model_selection import train_test_split
+from sklearn import metrics
 
 
 class model_class():
@@ -18,8 +19,6 @@ class model_class():
         length = int(self.model_layers) - 1
 
         for i in range(length):
-            print(self.model_data[i][0])
-            print("                                     ")
 
             act = str(self.model_data[i][1])
             if i == 0:
@@ -36,12 +35,9 @@ class model_class():
     def model_run(self, path):
         csv_file = pd.read_csv(path + '/dataset.csv')
         Y_data = csv_file[csv_file.columns[-1]]
-        X_data = csv_file.iloc[:,:-1]
-        
-        X_data = X_data.drop('Date', axis=1)
+        X_data = csv_file.iloc[:, :-1]
 
-        print(len(X_data.columns))
-        print("<br>")
+        #X_data = X_data.drop('Date', axis=1)
 
         pre_model = self.model_create(len(X_data.columns))
         X_train, X_test, y_train, y_test = train_test_split(
@@ -49,5 +45,9 @@ class model_class():
 
         pre_model.fit(X_train, y_train, epochs=int(
             self.epochs), batch_size=10, verbose=0)
+
+        y_pred = pre_model.predict(X_test)
+        print("Accuracy: ", metrics.accuracy_score(y_test, y_pred))
+
         plot_model(pre_model, to_file=path + '/result.png',
                    show_shapes=True, show_layer_names=True)

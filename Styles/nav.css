@@ -17,6 +17,11 @@
     display: inline;
 }
 
+.nav a img {
+    width: 100%;
+    height: auto;
+}
+
 a,
 a:visited {
     transition-duration: 0.4s;

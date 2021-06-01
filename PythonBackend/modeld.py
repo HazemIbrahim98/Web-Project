@@ -23,14 +23,15 @@ class modeld_class():
         Y_data = csv_file[csv_file.columns[-1]]
         X_data = csv_file.iloc[:, :-1]
 
-        X_data = X_data.drop('Date', axis=1)
+        #X_data = X_data.drop('Date', axis=1)
 
         X_train, X_test, y_train, y_test = train_test_split(
             X_data, Y_data, test_size=0.2)
         model.fit(X_train, y_train)
+
         y_pred = model.predict(X_test)
         print("Accuracy: ", metrics.accuracy_score(y_test, y_pred))
-        print(path + "/result.dot")
+
         tree.export_graphviz(model, out_file=path + "/result.dot")
         (graph, ) = pydot.graph_from_dot_file(path + "/result.dot")
         graph.write_png(path + "/result.png")
