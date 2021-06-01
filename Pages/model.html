@@ -223,7 +223,7 @@
                     args: args,
                 },
             }).done(function(data) {
-                alert(data);
+                //alert(data);
                 console.log(data)
                 window.location.href = "Results.html"
                     //TODO: GOTO Result.html
@@ -245,7 +245,8 @@
                     }
                     layers = layers.substring(1);
                     var ep = document.getElementById("epochs").value;
-
+                    var username = "<?php session_start(); echo $_SESSION['name'];?>";
+                    alert(username);
                     var args = '0 ' + number + ' [' + layers + '] ' + ep;
                     snackbar("Model is running!")
                     submit(args);
@@ -254,8 +255,10 @@
                     var dp = document.getElementById("max_depth").value;
                     var fr = document.getElementById("max_features").value;
                     var lf = document.getElementById("max_leaf_nodes").value;
-
-                    var args = '1 ' + dp + ' ' + fr + ' ' + lf;
+                    var username = sessionStorage.getItem("name");
+                    
+                    var args = '1 ' + ' ' + username + ' ' + dp + ' ' + fr + ' ' + lf;
+                    alert(args);
                     snackbar("Model is running!")
                     submit(args);
                 }
