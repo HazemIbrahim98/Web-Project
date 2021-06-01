@@ -53,7 +53,9 @@
             Upload a .csv Dataset to begin! <br><br>
             <input type="file" class="form" accept=".csv" id="myFile">
             <p id="demo"></p>
-            <button type="submit" class="btn btn-primary" id="submit-file" onclick="myUpload()"> Upload</button>
+            <button type="submit" class="btn btn-primary" id="submit-file" onclick="myUpload()" disabled> Upload</button>
+            <br>
+            <span id="logintocontinue" style="color: red;">Please login to use our services</span>
         </div>
 
         <div id="showMe">
@@ -106,6 +108,9 @@
                     replaceBy.appendChild(href);
 
                     replace.parentNode.replaceChild(replaceBy, replace);
+
+                    document.getElementById("submit-file").disabled = false;
+                    document.getElementById('logintocontinue').innerHTML = '';
                 }
             });
         }
