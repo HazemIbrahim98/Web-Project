@@ -1,6 +1,7 @@
-put anythign in aboutus
+put anything in aboutus
 
 session with timeout
+
 in index, aboutus, model, results get email from session w 7otha mkan login | register
 on click 3la el email da href to page zy register blzbt bas bt modify 2l data (don't forget to check if new email exists) (modify)
 also add a delete button to delete user mn database
@@ -11,16 +12,10 @@ in model.html
     display a loading scree wla hga lma 2l model ybd2 y run
     lma y5ls law error whla hga print error else navigate to results.html
 
-make results.html display result.png
-
-actually use 2l uploaded dataset (just change 2l path mn l mython script) (leave it for now)
-result.dot bttl3 f 2l php file msh pythonbackend for some reason
-
 responsive
 check out procjet rubrik
 
-
---------------------To run model from php-----------------------------
+--------------------------To run model from php--------------------------
 MLP
 python3 runner_script.py model layers [[num,'activ'],[num,'activ']] epochs
 ex: python3 runner_script.py 0 3 [[12,'relu'],[8,'relu'],[4,'sigmoid']] 10

@@ -11,9 +11,9 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 
 if ($row) {
-    $_SESSION["UserID"] = $row[0];
+    session_start();
+    $_SESSION["email"] = $row;
     header("Location: ../Pages/Index.html");
-    exit;
 } else {
     echo "THIS SHOULD BE TECHINCALLY INACCESSIBLE";
     echo "User not found";

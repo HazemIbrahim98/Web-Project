@@ -1,3 +1,12 @@
+<!-- THIS IS BASICALLY REGISTER.HTML BUT IT CALLS UPDATE.PHP-->
+<!-- ADD OPTION TO DELETE USER INFO-->
+<!-- REGISTER BUTTON SHOULD BE UPDATE USER DATA BUTTON-->
+<!-- WHEN UPDATING CHECK 2N 2L EMAIL NOT TAKEN-->
+<!-- REMOVE THE COMMENTS WHEN YOU WORK ON THIS PAGE WHOEVER DOES-->
+
+
+<!-- 2L CODE 2L T7T DA REGISTER.HTML-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,11 +19,110 @@
     <meta name="description" content="A website for beginners to make their first neural network!">
     <meta name="author" content="Best Group">
 
-    <title>Neural Networks For Dummies - My Account</title>
+    <title>Neural Networks For Dummies - Register</title>
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Styles/nav.css">
+    <link rel="stylesheet" href="../Styles/LoginRegister.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 </head>
 
 <body>
+    <nav class="nav">
+        <a href="Index.html">
+            <img src="../Assets/Logo.png" alt="Logo Image">
+        </a>
+        <ul>
+            <li class="nav-Li"><a href="Login.html">Login</a></li>
+            <span class="separator">|</span>
+            <li class="nav-Li"><a href="Register.html">Register</a></li>
+            <span class="separator">|</span>
+            <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
+        </ul>
+    </nav>
 
+    <div class="container text-center border">
+        <div class="jumbotron text-center">
+            <h1>Register and give us your DATA</h1>
+            <p>We promise that we <span style="color: red;">WILL</span> sell your data!</p>
+        </div>
+        <form action="../Php/register.php" method="POST">
+            <div class="input-container">
+                <i class="fa fa-user icon"> 
+                    <span class="material-icons">person</span>
+                </i>
+                <input class="input-field" type="text" placeholder="Email" name="email" id="email" oninput="checkAll()" maxlength="30">
+                <span id="emailoutput" style="color: red;"></span>
+            </div>
+            <div class="input-container">
+                <i class="fa fa-key icon">
+                    <span class="material-icons">lock</span>
+                </i>
+                <input class="input-field" type="password" placeholder="Password" id="pw1" name="password" oninput="checkAll()" maxlength="10">
+            </div>
+            <div class="input-container">
+                <i class="fa fa-key icon">
+                    <span class="material-icons">lock</span>
+                </i>
+                <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
+                <span id="passoutput" style="color: red;"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitBTN" disabled>Register</button>
+        </form>
+    </div>
+    <script>
+        function updatePassword() {
+            var pw1 = document.getElementById("pw1").value;
+            var pw2 = document.getElementById("pw2").value;
+
+            if (pw1 == '')
+                document.getElementById("passoutput").innerHTML = "Password Can't be nothing"
+            else if (pw1 == pw2)
+                document.getElementById("passoutput").innerHTML = ""
+            else
+                document.getElementById("passoutput").innerHTML = "Passwords don't match"
+
+        }
+
+        async function updateEmail() {
+            email = document.getElementById("email").value
+            if (email == '')
+                document.getElementById("emailoutput").innerHTML = "Email Can't be empty"
+            else {
+                var res = await ajaxCall(email)
+
+                if (res == 'Ok') {
+                    document.getElementById("emailoutput").innerHTML = ""
+                } else {
+                    document.getElementById("emailoutput").innerHTML = "Email Already Exists"
+                }
+            }
+        }
+
+        function ajaxCall(email) {
+            return $.ajax({
+                type: "POST",
+                url: "../Php/checkEmail.php",
+                data: {
+                    email: email,
+                },
+            });
+        }
+
+        async function checkAll() {
+            await updateEmail();
+            updatePassword();
+            enableButton()
+        }
+
+        function enableButton() {
+            if (document.getElementById("emailoutput").innerHTML == document.getElementById("passoutput").innerHTML)
+                document.getElementById("submitBTN").disabled = false;
+            else
+                document.getElementById("submitBTN").disabled = true;
+        }
+    </script>
 </body>
 
 </html>
