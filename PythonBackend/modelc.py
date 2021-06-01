@@ -33,11 +33,12 @@ class model_class():
                            optimizer='adam', metrics=['accuracy'])
         return model_self
 
-    def model_run(self, path, target_Y):
+    def model_run(self, path):
         csv_file = pd.read_csv(path + 'DATASET.csv')
-        X_data = csv_file.drop(target_Y, axis=1)
         Y_data = csv_file[csv_file.columns[-1]]
-        X_data = X_data.drop('Date', axis=1)
+        X_data = csv_file.iloc[:,:-1]
+        
+        #X_data = X_data.drop('Date', axis=1)
 
         print(len(X_data.columns))
         print("<br>")

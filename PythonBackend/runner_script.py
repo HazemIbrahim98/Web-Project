@@ -38,7 +38,7 @@ if int(sys.argv[1]) == 0:
         print("MADE THE MODEL!!!")
 
         mod.model_run(
-            filePATH, 'Target')
+            filePATH)
     except Exception as e:
         print(e)
 
@@ -53,4 +53,4 @@ elif int(sys.argv[1]) == 1:
     mod.max_depth = int(sys.argv[4])
 
     mod.model_run(
-        filePATH, "Target")
+        filePATH)
