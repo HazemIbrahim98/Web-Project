@@ -46,8 +46,8 @@ class model_class():
         pre_model.fit(X_train, y_train, epochs=int(
             self.epochs), batch_size=10, verbose=0)
 
-        y_pred = pre_model.predict(X_test)
-        print("Accuracy: ", metrics.accuracy_score(y_test, y_pred))
+        #y_pred = pre_model.predict(X_test)
+        #print("Accuracy: ", metrics.accuracy_score(y_test, y_pred))
 
         plot_model(pre_model, to_file=path + '/result.png',
                    show_shapes=True, show_layer_names=True)
