@@ -16,17 +16,14 @@
     <link rel="stylesheet" href="../Styles/Index.css">
 </head>
 
-<body>
+<body onload="emaillogin()">
+
     <nav class="nav">
         <a href="Index.html">
             <img src="../Assets/Logo.png" alt="Logo Image">
         </a>
-        <ul>
-            <li class="nav-Li"><a href="Login.html">Login</a></li>
-            <span class="separator">|</span>
-            <li class="nav-Li"><a href="Register.html">Register</a></li>
-            <span class="separator">|</span>
-            <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
+        <ul id = "navihere">
+           
         </ul>
     </nav>
     <div>
@@ -60,11 +57,40 @@
     <script>
         
         function emaillogin(){
-
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            // should try to find if the session started
+            if (session_start() && isset($_SESSION['UserID'])) {
+            // $_SESSION['UserID'] is set
             var AcessSessionint;
             AcessSession= '<%=Session["UserID"]%>'
-            alert(AcessSession);
-        }
+            //window.sessionStorage=
+
+
+            var li = document.createElement("li");
+            li.classname = "nav-li";
+            li.href="Modify.html";
+            li.innerText= AcessSession;
+            var span = document.createElement("span");
+            span.classname= "separator";
+            span.innerText="|";
+            var li2 = document.createElement("li");
+            li2.classname = "nav-li";
+            li2.href="AboutUs.html";
+            li2.innerText= "Aboutus";
+
+            console.log(AcessSession);
+
+            }
+            else{
+
+           // <li class="nav-Li"><a href="Login.html">Login</a></li>
+            //<span class="separator">|</span>
+            //<li class="nav-Li"><a href="Register.html">Register</a></li>
+           // <span class="separator">|</span>
+            //<li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
+        }}
         function myUpload() {
             var x = document.getElementById("myFile");
             var fr = new FileReader();
