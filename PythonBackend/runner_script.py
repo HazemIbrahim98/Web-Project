@@ -6,7 +6,7 @@ import modeld
 # @mo2a comment 2l path da w 7ot 2l path bta3k gmbo w delete this comment
 filePATH = '../Dataset/' + str(sys.argv[2])
 csvPATH = '../Dataset/' + str(sys.argv[2]) + '/dataset.csv'
-outputPATH = '../Dataset/' + str(sys.argv[2]) + '/result.png'
+outputPATH = '../Dataset/' + str(sys.argv   [2]) + '/result.png'
 
 if int(sys.argv[1]) == 0:
     model_type = sys.argv[1]

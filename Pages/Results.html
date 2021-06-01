@@ -29,8 +29,23 @@
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
-    <img src="../PythonBackend/result.png" alt="">
+    <div>
+        <div class="csv overlap text-center">
+            <div class="jumbotron text-center">
+                <h1>Model <span style="color: #DF91F1;">Diagram</span></h1>
+                <br>
+                <p>Accuracy: <span id="acc" style="color: #DF91F1;">99%</span></p>
+            </div>
+            <div id="result">
+                <img id="res-img" alt="">
+            </div>
+        </div>
+    </div>
     <script>
+        $(document).ready(function () {
+            $("#res-img").attr("src", "../PythonBackend/result.png").fadeIn();
+        });
+
         function checkLogin() {
             $.ajax({
                 type: "POST",
@@ -38,7 +53,7 @@
                 data: {
                     var: 'email',
                 },
-            }).done(function(data) {
+            }).done(function (data) {
                 console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in
