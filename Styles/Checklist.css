@@ -12,8 +12,9 @@
   border-radius: var(--border-radius);
   position: relative;
   box-shadow: 0 10px 30px #E9ECEF;
-  padding: 30px 45px;
+  padding: 25px 45px;
   display: grid;
+  margin-left: 16%;
   grid-template-columns: 30px auto;
   align-items: center;
 }
