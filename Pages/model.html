@@ -61,7 +61,7 @@
                 type: "POST",
                 url: "../Php/getSessionVariable.php",
                 data: {
-                    var: 'email',
+                    var: 'name',
                 },
             }).done(function(data) {
                 console.log(data)
@@ -79,7 +79,7 @@
                     replaceBy.className = "nav-Li";
 
                     var href = document.createElement("a")
-                    href.innerHTML = data
+                    href.innerHTML = capital(data)
                     href.href = "Account.html"
 
                     replaceBy.appendChild(href);
@@ -392,6 +392,9 @@
             setTimeout(function() {
                 x.className = x.className.replace("show", "");
             }, 3000);
+        }
+        function capital(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
     </script>
 </body>

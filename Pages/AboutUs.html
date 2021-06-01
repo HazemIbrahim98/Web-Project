@@ -33,7 +33,7 @@
             <li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
         </ul>
     </nav>
-    
+
     <div>
         <div class="csv overlap text-center">
             <div class="jumbotron text-center">
@@ -54,7 +54,7 @@
                 type: "POST",
                 url: "../Php/getSessionVariable.php",
                 data: {
-                    var: 'email',
+                    var: 'name',
                 },
             }).done(function(data) {
                 console.log(data)
@@ -72,7 +72,7 @@
                     replaceBy.className = "nav-Li";
 
                     var href = document.createElement("a")
-                    href.innerHTML = data
+                    href.innerHTML = capital(data)
                     href.href = "Account.html"
 
                     replaceBy.appendChild(href);
@@ -80,6 +80,9 @@
                     replace.parentNode.replaceChild(replaceBy, replace);
                 }
             });
+            function capital(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
         }
     </script>
 </body>
