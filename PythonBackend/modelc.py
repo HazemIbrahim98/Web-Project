@@ -34,11 +34,11 @@ class model_class():
         return model_self
 
     def model_run(self, path):
-        csv_file = pd.read_csv(path + 'DATASET.csv')
+        csv_file = pd.read_csv(path + '/dataset.csv')
         Y_data = csv_file[csv_file.columns[-1]]
         X_data = csv_file.iloc[:,:-1]
         
-        #X_data = X_data.drop('Date', axis=1)
+        X_data = X_data.drop('Date', axis=1)
 
         print(len(X_data.columns))
         print("<br>")
@@ -49,5 +49,5 @@ class model_class():
 
         pre_model.fit(X_train, y_train, epochs=int(
             self.epochs), batch_size=10, verbose=0)
-        plot_model(pre_model, to_file=path + 'result.png',
+        plot_model(pre_model, to_file=path + '/result.png',
                    show_shapes=True, show_layer_names=True)
