@@ -3,11 +3,6 @@ import modelc
 import modeld
 
 filePATH = '../Dataset/' + str(sys.argv[2])
-<<<<<<< HEAD
-=======
-csvPATH = '../Dataset/' + str(sys.argv[2]) + '/dataset.csv'
-outputPATH = '../Dataset/' + str(sys.argv   [2]) + '/result.png'
->>>>>>> a596c7a1e2729dc59d92ac1a3548f48aae59fe27
 
 if int(sys.argv[1]) == 0:
     model_type = sys.argv[1]
