@@ -60,7 +60,8 @@
                     //change nav bar if user is logged in
                     var elem = document.getElementById("delme1");
                     elem.parentNode.removeChild(elem);
-
+                    var accuracy_element = document.getElementById("acc");
+                    accuracy_element.innerHTML = sessionStorage.getItem('accuracy').toString();
                     elem = document.getElementById("delme2");
                     elem.parentNode.removeChild(elem);
 
