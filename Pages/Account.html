@@ -52,31 +52,27 @@
             <i class="fa fa-user icon">
                 <span class="material-icons">person</span>
             </i>
-            <input class="input-field" type="text" placeholder="Email" name="email" id="email" oninput="checkAll()"
-                maxlength="30">
+            <input class="input-field" type="text" placeholder="Email" name="email" id="email" oninput="checkAll()" maxlength="30">
             <span id="emailoutput" style="color: red;"></span>
         </div>
         <div class="input-container">
             <i class="fa fa-key icon">
                 <span class="material-icons">lock</span>
             </i>
-            <input class="input-field" type="password" placeholder="Password" id="pw1" name="password"
-                oninput="checkAll()" maxlength="10">
+            <input class="input-field" type="password" placeholder="Password" id="pw1" name="password" oninput="checkAll()" maxlength="10">
         </div>
         <div class="input-container">
             <i class="fa fa-key icon">
                 <span class="material-icons">lock</span>
             </i>
-            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2"
-                oninput="checkAll()" maxlength="10">
+            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
             <span id="passoutput" style="color: red;"></span>
         </div>
         <div class="input-container">
             <i class="fa fa-key icon">
                 <span class="material-icons">lock</span>
             </i>
-            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2"
-                oninput="checkAll()" maxlength="10">
+            <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
             <span id="passoutput" style="color: red;"></span>
         </div>
         <div class="row">
@@ -104,21 +100,17 @@
             }
         }
         async function logout() {
-            var res = await ajaxCall2();
-            console.log(res);
-            if (res == 'Ok') {
-                window.location = "Index.html";
-            } else {
-                snackbar();
-            }
+            window.location.href = "../Php/logout.php"
         }
+
         function snackbar() {
             var x = document.getElementById("snackbar");
             x.className = "show";
-            setTimeout(function () {
+            setTimeout(function() {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
+
         function ajaxCall(email, password) {
             return $.ajax({
                 type: "POST",
@@ -129,12 +121,8 @@
                 }
             });
         }
-        function ajaxCall2() {
-            return $.ajax({
-                type: "POST",
-                url: "../Php/logout.php",
-            });
-        }
+
+
         function updatePassword() {
             var pw1 = document.getElementById("pw1").value;
             var pw2 = document.getElementById("pw2").value;
@@ -193,7 +181,7 @@
                 data: {
                     var: 'email',
                 },
-            }).done(function (data) {
+            }).done(function(data) {
                 console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in
