@@ -63,7 +63,7 @@
         async function checkLoginInfo() {
             email = document.getElementById("email").value;
             password = document.getElementById("pw").value;
-            var res = await ajaxCall(email, password)
+            var res = await ajaxCall(email, password);
             console.log(res);
             if (res == 'Ok') {
                 document.getElementById("myForm").submit();
@@ -81,7 +81,7 @@
             }, 3000);
         }
 
-        function ajaxCall(email, password) {
+        async function ajaxCall(email, password) {
             return $.ajax({
                 type: "POST",
                 url: "../Php/checkLoginInfo.php",

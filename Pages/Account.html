@@ -68,10 +68,47 @@
                 <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
                 <span id="passoutput" style="color: red;"></span>
             </div>
-            <button type="submit" class="btn btn-primary" id="submitBTN" disabled>Register</button>
+            <div class="input-container">
+                <i class="fa fa-key icon">
+                    <span class="material-icons">lock</span>
+                </i>
+                <input class="input-field" type="password" placeholder="Confirm Password" id="pw2" name="password2" oninput="checkAll()" maxlength="10">
+                <span id="passoutput" style="color: red;"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitBTN" disabled onclick="updateLoginInfo()">Update Password</button>
         </form>
     </div>
     <script>
+        async function updateLoginInfo()
+        {
+            email = document.getElementById("email").value;
+            password = document.getElementById("pw1").value;
+            var res = await ajaxCall(email, password);
+            console.log(res);
+            if (res == 'Ok') {
+                document.getElementById("myForm").submit();
+            } else {
+                snackbar();
+            }
+        }
+        
+        function snackbar() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
+        function ajaxCall(email, password) {
+            return $.ajax({
+                type: "POST",
+                url: "../Php/checkpassword.php",
+                data: {
+                    email: email,
+                    password: password
+                }
+            });
+        }
         function updatePassword() {
             var pw1 = document.getElementById("pw1").value;
             var pw2 = document.getElementById("pw2").value;
@@ -95,7 +132,7 @@
                 if (res == 'Ok') {
                     document.getElementById("emailoutput").innerHTML = ""
                 } else {
-                    document.getElementById("emailoutput").innerHTML = "Email Already Exists"
+                    document.getElementById("emailoutput").innerHTML = ""
                 }
             }
         }
