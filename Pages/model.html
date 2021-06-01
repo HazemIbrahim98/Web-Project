@@ -255,10 +255,9 @@
                     args: args,
                 },
             }).done(function(data) {
-                //alert(data);
                 console.log(data)
-                    window.location.href = "Results.html"
-                    //TODO: GOTO Result.html
+                sessionStorage.setItem('accuracy', data)
+                window.location.href = "Results.html"
             });
         }
 
@@ -393,6 +392,7 @@
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
+
         function capital(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }

@@ -42,9 +42,12 @@
         </div>
     </div>
     <script>
+        console.log(sessionStorage.getItem('accuracy'))
+
+
         let name = sessionStorage.getItem('name');
         console.log(name);
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#res-img").attr("src", "../Dataset/" + name + "/result.png").fadeIn();
         });
 
@@ -55,7 +58,7 @@
                 data: {
                     var: 'name',
                 },
-            }).done(function (data) {
+            }).done(function(data) {
                 console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in

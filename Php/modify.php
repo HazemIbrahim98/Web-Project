@@ -8,6 +8,3 @@ $sql = "UPDATE users SET password = '".$password."' WHERE email = '".$email."'";
 
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
-
-
-?>
