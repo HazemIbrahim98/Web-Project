@@ -1,11 +1,3 @@
-add accuracy to results.html
-
-
-in account.html
-    account.html atm is register.html f hya m7taga 7d y3mlha w y3ml 2l php bt3ha w sql connection w kda y3ny
-    5ly register yb2a modify w t call modify.php w abl m tcall check 2n 2l new email msh taken
-    also add a delete button to delete user mn database
-
 in model.html
     display a loading scree wla hga lma 2l model ybd2 y run
     lma y5ls law error whla hga print error else navigate to results.html
