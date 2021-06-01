@@ -30,7 +30,7 @@ class modeld_class():
         model.fit(X_train, y_train)
 
         y_pred = model.predict(X_test)
-        print("%.3f" % (metrics.accuracy_score(y_test, y_pred)))
+        print("%.3f%" % (metrics.accuracy_score(y_test, y_pred)))
 
         tree.export_graphviz(model, out_file=path + "/result.dot")
         (graph, ) = pydot.graph_from_dot_file(path + "/result.dot")
