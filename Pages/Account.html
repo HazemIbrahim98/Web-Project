@@ -76,11 +76,12 @@
     <script>
         async function updateLoginInfo() {
             let email = sessionStorage.getItem('email');
-            console.log(email);
             password = document.getElementById("pw1").value;
+            console.log(email);
+            console.log(password);
             var res = await ajaxCall(email, password);
             console.log(res);
-            if (res == 'Ok') {
+            if (res) {
                 window.location.href = "Index.html";
                 snackbar();
             } else {
@@ -117,7 +118,6 @@
                 }
             });
         }
-
 
         function updatePassword() {
             var pw1 = document.getElementById("pw1").value;
