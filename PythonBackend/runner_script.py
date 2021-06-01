@@ -5,6 +5,7 @@ import modeld
 
 print(os.getcwd())
 # @mo2a comment 2l path da w 7ot 2l path bta3k gmbo w delete this comment
+filePATH = '../PythonBackend/'
 csvPATH = '../PythonBackend/EURUSD1.csv'
 outputPATH = '../PythonBackend/result.png'
 
@@ -37,7 +38,7 @@ if int(sys.argv[1]) == 0:
         print("MADE THE MODEL!!!")
 
         mod.model_run(
-            csvPATH, outputPATH, 'Target')
+            filePATH, 'Target')
     except Exception as e:
         print(e)
 
@@ -59,4 +60,4 @@ elif int(sys.argv[1]) == 1:
     else:
         mod.max_depth = int(sys.argv[4])
     mod.model_run(
-        csvPATH, outputPATH, "Target")
+        filePATH, "Target")

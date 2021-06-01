@@ -23,8 +23,8 @@
         <a href="Index.html">
             <img src="../Assets/Logo.png" alt="Logo Image">
         </a>
-        <ul id = "navihere">
-           
+        <ul id="navihere">
+
         </ul>
     </nav>
     <div>
@@ -35,11 +35,11 @@
                     <input id="01" type="checkbox" name="r" value="1">
                     <label for="01">Remove all Date columns from your dataset</label>
                     <input id="02" type="checkbox" name="r" value="2">
-                    <label for="02">Make Sure all data id numeric</label>
+                    <label for="02">Make Sure all data is Numeric</label>
                     <input id="03" type="checkbox" name="r" value="3">
-                    <label for="03">For Decision Tree: Please Target has to be 0 or 1</label>
+                    <label for="04">Target has to be the last column</label>
                     <input id="04" type="checkbox" name="r" value="4">
-                    <label for="04">Target has to be last column</label>
+                    <label for="03">For Decision Tree: Target has to be 0 or 1</label>
                 </div>
             </div>
             Upload a .csv Dataset to begin! <br><br>
@@ -69,47 +69,47 @@
     </div>
 
     <script>
-        
-        function emaillogin(){
+        function emaillogin() {
             while (container.hasChildNodes()) {
                 container.removeChild(container.lastChild);
             }
             // should try to find if the session started
             if (session_start() && isset($_SESSION['UserID'])) {
-            // $_SESSION['UserID'] is set
-            var AcessSessionint;
-            AcessSession= '<%=Session["UserID"]%>'
-            //window.sessionStorage=
+                // $_SESSION['UserID'] is set
+                var AcessSessionint;
+                AcessSession = '<%=Session["UserID"]%>'
+                    //window.sessionStorage=
 
 
-            var li = document.createElement("li");
-            li.classname = "nav-li";
-            li.href="Modify.html";
-            li.innerText= AcessSession;
-            var span = document.createElement("span");
-            span.classname= "separator";
-            span.innerText="|";
-            var li2 = document.createElement("li");
-            li2.classname = "nav-li";
-            li2.href="AboutUs.html";
-            li2.innerText= "Aboutus";
+                var li = document.createElement("li");
+                li.classname = "nav-li";
+                li.href = "Modify.html";
+                li.innerText = AcessSession;
+                var span = document.createElement("span");
+                span.classname = "separator";
+                span.innerText = "|";
+                var li2 = document.createElement("li");
+                li2.classname = "nav-li";
+                li2.href = "AboutUs.html";
+                li2.innerText = "Aboutus";
 
-            console.log(AcessSession);
+                console.log(AcessSession);
 
+            } else {
+
+                // <li class="nav-Li"><a href="Login.html">Login</a></li>
+                //<span class="separator">|</span>
+                //<li class="nav-Li"><a href="Register.html">Register</a></li>
+                // <span class="separator">|</span>
+                //<li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
             }
-            else{
+        }
 
-           // <li class="nav-Li"><a href="Login.html">Login</a></li>
-            //<span class="separator">|</span>
-            //<li class="nav-Li"><a href="Register.html">Register</a></li>
-           // <span class="separator">|</span>
-            //<li class="nav-Li"><a href="AboutUs.html">About Us</a></li>
-        }}
         function myUpload() {
             var x = document.getElementById("myFile");
             var fr = new FileReader();
             fr.readAsText(x.files[0]);
-            fr.onload = function () {
+            fr.onload = function() {
                 document.getElementById('hideMe')
                     .style.visibility = 'hidden';
                 document.getElementById('showMe')
@@ -130,7 +130,7 @@
         function snackbar() {
             var x = document.getElementById("snackbar");
             x.className = "show";
-            setTimeout(function () {
+            setTimeout(function() {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }

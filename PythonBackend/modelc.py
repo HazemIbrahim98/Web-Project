@@ -33,8 +33,8 @@ class model_class():
                            optimizer='adam', metrics=['accuracy'])
         return model_self
 
-    def model_run(self, path, outputPATH, target_Y):
-        csv_file = pd.read_csv(path)
+    def model_run(self, path, target_Y):
+        csv_file = pd.read_csv(path + 'DATASET.csv')
         X_data = csv_file.drop(target_Y, axis=1)
         Y_data = csv_file[csv_file.columns[-1]]
         X_data = X_data.drop('Date', axis=1)
@@ -48,5 +48,5 @@ class model_class():
 
         pre_model.fit(X_train, y_train, epochs=int(
             self.epochs), batch_size=10, verbose=0)
-        plot_model(pre_model, to_file=outputPATH,
+        plot_model(pre_model, to_file=path + 'result.png',
                    show_shapes=True, show_layer_names=True)

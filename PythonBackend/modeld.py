@@ -1,9 +1,7 @@
-import sklearn
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import graphviz
 import pydot
 
 
@@ -18,9 +16,9 @@ class modeld_class():
             max_depth=self.max_depth, max_features=self.max_features, max_leaf_nodes=self.max_leaf_nodes)
         return model_self
 
-    def model_run(self, path, outputPATH, target_Y):
+    def model_run(self, path, target_Y):
         model = self.model_create()
-        csv_file = pd.read_csv(path)
+        csv_file = pd.read_csv(path + 'DATASET.csv')
         X_data = csv_file.drop(target_Y, axis=1)
         Y_data = csv_file[csv_file.columns[-1]]
         X_data = X_data.drop('Date', axis=1)
@@ -28,6 +26,6 @@ class modeld_class():
         X_train, X_test, y_train, y_test = train_test_split(
             X_data, Y_data, test_size=0.2)
         model.fit(X_train, y_train)
-        tree.export_graphviz(model, out_file="result.dot")
-        (graph, ) = pydot.graph_from_dot_file("result.dot")
-        graph.write_png(outputPATH)
+        tree.export_graphviz(model, out_file=path + "result.dot")
+        (graph, ) = pydot.graph_from_dot_file(path + "result.dot")
+        graph.write_png(path + "result.png")
