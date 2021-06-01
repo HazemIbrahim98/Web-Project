@@ -44,9 +44,6 @@
     <script>
         console.log(sessionStorage.getItem('modelout'));
 
-
-        let name = sessionStorage.getItem('name');
-        console.log(name);
         $(document).ready(function() {
             $("#res-img").attr("src", "../Dataset/" + name + "/result.png").fadeIn();
         });
@@ -59,7 +56,6 @@
                     var: 'name',
                 },
             }).done(function(data) {
-                console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in
                     var elem = document.getElementById("delme1");

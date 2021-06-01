@@ -88,7 +88,6 @@
                     var: 'name',
                 },
             }).done(function(data) {
-                console.log(data)
                 if (data != '') {
                     //change nav bar if user is logged in
                     var elem = document.getElementById("delme1");
@@ -180,6 +179,7 @@
             table += '</table>';
             document.getElementById('output').innerHTML = table.toString();
         }
+
         function capital(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
