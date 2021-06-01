@@ -1,13 +1,12 @@
 .overlap {
     position: absolute;
-    align-items: center;
+    width: 90%;
 }
 
 .csv {
-    margin-left: 43%;
     box-shadow: 3px 3px 5px 6px #ccc;
-    padding: 2%;
     border-radius: 25px;
+    padding: 20px;
 }
 
 #myFile {
@@ -17,20 +16,8 @@
     padding: 20px;
 }
 
-#hideMe {
-    text-align: center;
-    margin: auto;
-    width: 50%;
-    margin-left: 25%;
-    padding: 10px;
-}
-
 #showMe {
     visibility: hidden;
-}
-
-.margin {
-    margin: 3%;
 }
 
 .center {
@@ -38,9 +25,10 @@
 }
 
 .btn-primary {
+    width: 100px;
+    height: auto;
     border-radius: 10px;
     transition-duration: 0.4s;
-    width: 25%;
     background: #DF91F1;
     border-color: #ccc;
 }
@@ -57,22 +45,23 @@
 
 #csvDiv {
     height: 65vh;
-    margin-left: 5%;
-    width: 90%;
     overflow: auto;
     border-radius: 25px;
     box-shadow: 3px 3px 5px 6px #ccc;
 }
 
 ::-webkit-scrollbar {
-    width: 2px;
+    width: 10px;
 }
 
  ::-webkit-scrollbar-track {
+    margin: 25px;
+    border-radius: 10px;
     background: #f1f1f1;
 }
 
  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
     background: #888;
 }
 
