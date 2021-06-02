@@ -55,7 +55,6 @@
     </div>
     <div id="snackbar">Data Cleaned!</div>
 
-    <div id="blur"></div>
     <div class="modal"></div>
     </div>
 
@@ -292,6 +291,8 @@
                     var username = sessionStorage.getItem("name");
                     var args = '0 ' + username + ' ' + number + ' [' + layers + '] ' + ep;
 
+                    snackbar("Model is running!")
+                    submit(args);
                 } else if (dd == '1' && checkDepth() && checkFeatures() && checkLeafs()) {
                     //model name max_depth max_features max_leaf_nodes
                     var dp = document.getElementById("max_depth").value;
@@ -301,10 +302,9 @@
 
                     var args = '1 ' + ' ' + username + ' ' + dp + ' ' + fr + ' ' + lf;
 
+                    snackbar("Model is running!")
+                    submit(args);
                 }
-                snackbar("Model is running!")
-                submit(args);
-
             }
         }
 
