@@ -54,9 +54,22 @@
         </div>
     </div>
     <div id="snackbar">Data Cleaned!</div>
+
+    <div id="blur"></div>
+    <div class="modal"></div>
     </div>
 
     <script>
+        $body = $("body");
+        $(document).on({
+            ajaxStart: function() {
+                $body.addClass("loading");
+            },
+            ajaxStop: function() {
+                $body.removeClass("loading");
+            }
+        });
+
         function checkLogin() {
             $.ajax({
                 type: "POST",
