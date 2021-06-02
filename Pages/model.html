@@ -326,6 +326,12 @@
             if (number == '') {
                 snackbar("Please enter number of layers")
                 return false;
+            } else if (!isInt(number)) {
+                snackbar("Please enter an Integer in  of layers");
+                return false;
+            } else if (number < 0) {
+                snackbar("Layers has to be positive!");
+                return false;
             }
             for (i = 0; i < number; i++) {
                 var layer = document.getElementById("neuron" + (i + 1)).value;
@@ -348,7 +354,10 @@
                 snackbar("Please enter Number of epochs");
                 return false;
             } else if (!isInt(ep)) {
-                snackbar("Please enter a Number in number of epochs");
+                snackbar("Please enter an Integer in number of epochs");
+                return false;
+            } else if (ep < 0) {
+                snackbar("Epochs has to be positive!");
                 return false;
             }
             return true
@@ -363,6 +372,9 @@
             } else if (!isInt(ep)) {
                 snackbar("Please enter a Number in Maximum Depth");
                 return false;
+            } else if (ep < 0) {
+                snackbar("Maximum Depth has to be positive!");
+                return false;
             }
             return true
         }
@@ -376,6 +388,9 @@
             } else if (!isInt(ep)) {
                 snackbar("Please enter a Number in Maximum Number of Features");
                 return false;
+            } else if (ep < 0) {
+                snackbar("Maximum Number of Features has to be positive!");
+                return false;
             }
             return true
         }
@@ -388,6 +403,9 @@
                 return false;
             } else if (!isInt(ep)) {
                 snackbar("Please enter a Number in Maximum Leaf Nodes");
+                return false;
+            } else if (ep < 0) {
+                snackbar("Maximum Leaf Nodes has to be positive!");
                 return false;
             }
             return true
