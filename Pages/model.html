@@ -39,7 +39,8 @@
         </div>
         <div id="main">
             <div id="contentDiv">
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown" onchange="addParams()">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown"
+                    onchange="addParams()">
                     <option disabled selected>Choose Machine Learning Model</option>
                     <option value="0">Multilayer Perceptron</option>
                     <option value="1">Decision Tree</option>
@@ -54,10 +55,16 @@
     <div id="snackbar">Data Cleaned!</div>
 
     <div id="blur"></div>
-
+    <div class="modal"></div>
     </div>
 
     <script>
+        $body = $("body");
+        $(document).on({
+            ajaxStart: function () { $body.addClass("loading"); },
+            ajaxStop: function () { $body.removeClass("loading"); }
+        });
+        
         function checkLogin() {
             $.ajax({
                 type: "POST",
@@ -65,7 +72,7 @@
                 data: {
                     var: 'name',
                 },
-            }).done(function(data) {
+            }).done(function (data) {
                 if (data != '') {
                     //change nav bar if user is logged in
                     var elem = document.getElementById("delme1");
@@ -255,7 +262,7 @@
                 data: {
                     args: args,
                 },
-            }).done(function(data) {
+            }).done(function (data) {
                 console.log(data)
                 sessionStorage.setItem('accuracy', data)
                 window.location.href = "Results.html"
@@ -389,7 +396,7 @@
             var x = document.getElementById("snackbar");
             x.className = "show";
             document.getElementById('snackbar').innerHTML = text
-            setTimeout(function() {
+            setTimeout(function () {
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
