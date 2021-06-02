@@ -16,5 +16,5 @@ if ($row) {
 } else {
     $sql = "INSERT INTO `users`(`email`, `password`) VALUES ('" . $email . "','" . $password . "')";
     mysqli_query($conn, $sql);
-    header("Location: ../Pages/Index.html");
+    header("Location: ../Pages/Login.html");
 }

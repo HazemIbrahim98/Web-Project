@@ -15,11 +15,13 @@
     <link rel="stylesheet" href="../Styles/nav.css">
     <link rel="stylesheet" href="../Styles/Index.css">
     <link rel="stylesheet" href="../Styles/LoginRegister.css">
+    <link rel="stylesheet" href="../Styles/model.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
 <body onload="checkLogin()">
+
     <nav class="nav">
         <a href="Index.html">
             <img src="../Assets/Logo.png" alt="Logo Image">
@@ -52,9 +54,6 @@
         </div>
     </div>
     <div id="snackbar">Data Cleaned!</div>
-
-    <div id="blur"></div>
-
     </div>
 
     <script>
@@ -222,8 +221,7 @@
                 input.name = "neuron" + (i + 1);
                 input.id = "neuron" + (i + 1);
 
-
-                var values = ["relu", "leakyrelu", "sigmoid"];
+                var values = ["relu", "sigmoid"];
 
                 var select = document.createElement("select");
                 select.name = "select" + (i + 1);
@@ -235,6 +233,8 @@
                     option.value = val;
                     option.text = val.charAt(0).toUpperCase() + val.slice(1);
                     select.appendChild(option);
+                    if (i != number - 1)
+                        break;
                 }
 
                 icon.appendChild(span)
@@ -244,7 +244,6 @@
 
 
                 container.appendChild(div);
-
             }
         }
 
