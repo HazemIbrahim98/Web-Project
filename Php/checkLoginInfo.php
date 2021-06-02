@@ -13,3 +13,5 @@ if ($row)
     echo "Ok";
 else
     echo "User not found";
+
+mysqli_close($conn);

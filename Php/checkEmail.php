@@ -13,3 +13,5 @@ if ($row)
     echo "Email Exists";
 else
     echo "Ok";
+
+mysqli_close($conn);

@@ -18,3 +18,5 @@ if ($row) {
     mysqli_query($conn, $sql);
     header("Location: ../Pages/Login.html");
 }
+
+mysqli_close($conn);

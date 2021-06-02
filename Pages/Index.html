@@ -89,6 +89,7 @@
                 },
             }).done(function(data) {
                 if (data != '') {
+                    var check = document.getElementById("00").checked = true;
                     //change nav bar if user is logged in
                     var elem = document.getElementById("delme1");
                     elem.parentNode.removeChild(elem);

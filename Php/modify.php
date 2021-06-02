@@ -8,3 +8,5 @@ $sql = "UPDATE `users` SET password = '" . $password . "' WHERE email = '" . $em
 
 $result = mysqli_query($conn, $sql);
 echo "THIS IS FORM PHP";
+
+mysqli_close($conn);

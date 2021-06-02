@@ -13,4 +13,5 @@ if ($row)
     echo "Ok";
 else
     echo "Password Mismatch";
-?>
+
+mysqli_close($conn);
